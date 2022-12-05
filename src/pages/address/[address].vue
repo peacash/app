@@ -29,7 +29,7 @@
 	</div>
 </template>
 <script>
-import init, { int_to_string } from "../../../pkg";
+import { int_to_string } from "../../../pkg";
 export default {
     data() {
 		return {
@@ -42,8 +42,6 @@ export default {
     mounted() {
 		document.title = this.$route.params.address + " - Address - Explorer - Pea";
 		this.loop();
-		init().then((_exports) => {
-		})
     },
 	unmounted() {
 		clearInterval(this.interval)
@@ -65,8 +63,6 @@ export default {
 			})
 		},
 		balance_to_string(balance) {
-			console.log(balance)
-			console.log(typeof balance)
 			return int_to_string(BigInt(balance))
 		},
 		shorten(string) {

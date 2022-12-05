@@ -1,17 +1,23 @@
-<style scoped>
-	.link {
-		text-decoration: none;
-	}
-	.link:hover {
-		text-decoration: underline;
-	}
-</style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-2 my-2 mt-12 w-full">
 		<Description>
-            <WalletNew>
-                hello
-            </WalletNew>
+            <div class="flex gap-2 justify-center">
+                <Button @click="generate_new()">Generate New</Button>
+                <Button @clijck="import_secret()">Import</Button>
+            </div>
+		</Description>
+		<Description>
+            <div class="flex gap-2 justify-center">
+                <Button>Send</Button>
+                <Button>Stake</Button>
+                <Button>Balance</Button>
+            </div>
+		</Description>
+		<Description>
+            <div class="flex flex-col gap-2 justify-center">
+                <Button>{{ secret }}</Button>
+                <Button>{{ public }}</Button>
+            </div>
 		</Description>
 	</div>
 </template>
@@ -20,58 +26,27 @@ import { address, secret } from "../../pkg";
 export default {
     data() {
 		return {
-			dynamic: null,
-			trusted: null,
-			sync: null,
-			info: null,
-			interval: null,
-			timeout: false,
-			https: window.location.protocol === "https:",
-			host: window.location.host,
-			api: null,
-			shorten_public_key: true
+            secret: "",
+			public: "",
 		}
 	},
     mounted() {
 		document.title = "Explorer - Pea";
-		this.loop();
-		setTimeout(() => {
-			this.timeout = true
-		}, 1000)
-        const array = new Uint32Array(10);
-        crypto.getRandomValues(array);
-        let s = secret(array);
-        console.log(s)
-        console.log(address(s))
     },
 	unmounted() {
 		clearInterval(this.interval)
 	},
 	methods: {
-		loop() {
-			this.fetchData();
-			this.interval = setInterval(() => {
-				this.fetchData()
-			}, 3000);
-		},
-		shorten(string) {
-			return string.slice(0, 12) + "..." + string.slice(-8)
-		},
-		fetchData() {
-			this.api = window.localStorage.getItem("api");
-			fetch(this.api + "/dynamic").then(res => res.json()).then(data => {
-				this.dynamic = data
-			})
-			fetch(this.api + "/trusted").then(res => res.json()).then(data => {
-				this.trusted = data
-			})
-			fetch(this.api + "/sync").then(res => res.json()).then(data => {
-				this.sync = data
-			})
-			fetch(this.api + "/info").then(res => res.json()).then(data => {
-				this.info = data
-			})
-		}
+        generate_new() {
+            const array = new Uint32Array(32);
+            crypto.getRandomValues(array);
+            let s = secret(array);
+            this.secret = s;
+            this.public = address(s);
+        },
+        import_secret() {
+
+        }
 	},
 }
 </script>
