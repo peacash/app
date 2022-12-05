@@ -54,7 +54,12 @@
 					<Button @click="transaction_sign()" v-if="!transaction_confirm">Sign Transaction</Button>
 					<Button @click="transaction_send()" v-else>Confirm send Transaction</Button>
 				</div>
-				<textarea disabled v-if="transaction_confirm" v-model="transaction" cols="30" rows="7" class="
+				<textarea disabled v-if="transaction" v-model="transaction" cols="30" rows="7" class="
+					text-black
+                    rounded
+                    w-full
+				"></textarea>
+				<textarea disabled v-if="transaction_res" v-model="transaction_res" cols="30" rows="7" class="
 					text-black
                     rounded
                     w-full
@@ -78,7 +83,7 @@
 					<Button @click="stake_sign()" v-if="!stake_confirm">Sign Stake</Button>
 					<Button @click="stake_send()" v-else>Confirm send Stake</Button>
 				</div>
-				<textarea disabled v-if="stake_confirm" v-model="stake" cols="30" rows="5" class="
+				<textarea disabled v-if="stake" v-model="stake" cols="30" rows="5" class="
 					text-black
                     rounded
                     w-full
@@ -111,18 +116,16 @@ export default {
 			view: "receive",
             secret: null,
 			public: null,
-			transaction: false,
-			transaction_confirm: "",
+			transaction: "",
 			transaction_output: "",
 			transaction_amount: "",
 			transaction_fee: "",
-			transaction_res: null,
+			transaction_res: "",
 			stake: "",
-			stake_confirm: false,
 			stake_deposit: true,
 			stake_amount: "",
 			stake_fee: "",
-			stake_res: null
+			stake_res: ""
 		}
 	},
 	mounted() {
@@ -156,7 +159,7 @@ export default {
 			fetch(window.localStorage.getItem("api") + "/transaction", {
 				method: "POST",
 				body: this.transaction
-			}).then(res => res.text()).then(data => {
+			}).then(res => res.json()).then(data => {
 				this.transaction_res = data
 			})
 		},
@@ -166,7 +169,7 @@ export default {
 			fetch(window.localStorage.getItem("api") + "/stake", {
 				method: "POST",
 				body: this.stake
-			}).then(res => res.text()).then(data => {
+			}).then(res => res.json()).then(data => {
 				this.stake_res = data
 			})
 		}
