@@ -165,7 +165,7 @@ export default {
 			this.stake_confirm = false
 			fetch(window.localStorage.getItem("api") + "/stake", {
 				method: "POST",
-				body: JSON.stringify(this.stake)
+				body: this.stake
 			}).then(res => res.text()).then(data => {
 				this.stake_res = data
 			})
