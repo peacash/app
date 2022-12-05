@@ -51,7 +51,7 @@
                     w-full
                 ">
 				<Button @click="transaction_sign()" class="mx-auto">Sign Transaction</Button>
-				<textarea v-if="transaction" v-model="transaction" cols="30" rows="7" class="
+				<textarea disabled v-if="transaction" v-model="transaction" cols="30" rows="7" class="
 					text-black
                     rounded
                     w-full
@@ -74,7 +74,7 @@
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
 					<Button @click="stake_sign()">Sign Stake</Button>
 				</div>
-				<textarea v-if="stake" v-model="stake" cols="30" rows="5" class="
+				<textarea disabled v-if="stake" v-model="stake" cols="30" rows="5" class="
 					text-black
                     rounded
                     w-full
