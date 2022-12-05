@@ -1,3 +1,11 @@
+<style scoped>
+	.link {
+		text-decoration: none;
+	}
+	.link:hover {
+		text-decoration: underline;
+	}
+</style>
 <template>
 	<div class="flex flex-col gap-2 my-2 mt-12 w-full">
 		<Description>
@@ -10,7 +18,9 @@
             <div class="flex gap-2 justify-center">
                 <Button>Send</Button>
                 <Button>Stake</Button>
-                <Button>Balance</Button>
+				<router-link v-if="public" class="link" :to="('/address/' + public)">
+                    <Button>Balance</Button>
+                </router-link>
             </div>
 		</Description>
 		<Description>
