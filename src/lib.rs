@@ -56,3 +56,8 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret_key: &str) -> 
         Err(err) => err.to_string(),
     }
 }
+
+#[wasm_bindgen]
+pub fn int_to_string(num: u64) -> String {
+    pea_int::to_string(num as u128)
+}

@@ -29,6 +29,7 @@
 	</div>
 </template>
 <script>
+import init, { int_to_string } from "../../../pkg";
 export default {
     data() {
 		return {
@@ -41,6 +42,8 @@ export default {
     mounted() {
 		document.title = this.$route.params.address + " - Address - Explorer - Pea";
 		this.loop();
+		init().then((_exports) => {
+		})
     },
 	unmounted() {
 		clearInterval(this.interval)
@@ -62,18 +65,9 @@ export default {
 			})
 		},
 		balance_to_string(balance) {
-			let decimals = 18
-			let string = '0'.repeat(decimals)
-			string += balance
-			let index = string.length - decimals
-			string = [string.slice(0, index), ".", string.slice(index)].join('')
-			while (string.startsWith("0")) {
-				string = string.slice(1)
-			}
-			if (string.startsWith(".")) {
-				string = "0" + string
-			}
-			return string
+			console.log(balance)
+			console.log(typeof balance)
+			return int_to_string(BigInt(balance))
 		},
 		shorten(string) {
 			return string.slice(0, 12) + "..." + string.slice(-8)
