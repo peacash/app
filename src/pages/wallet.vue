@@ -114,6 +114,9 @@ export default {
 	},
 	mounted() {
 		document.title = "Wallet - Pea"
+		if (this.transaction_output || this.transaction_amount || this.transaction_fee) {
+			this.view = "transaction"
+		}
 		this.load()
     },
 	methods: {
