@@ -1,0 +1,71 @@
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { setCacheNameDetails } from 'workbox-core';
+import { ExpirationPlugin } from 'workbox-expiration';
+import { precacheAndRoute, createHandlerBoundToURL, cleanupOutdatedCaches } from 'workbox-precaching';
+import { setDefaultHandler, registerRoute, NavigationRoute } from 'workbox-routing';
+import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies';
+
+setCacheNameDetails({
+	prefix: 'pea',
+	suffix: 'v1',
+	precache: 'precache',
+	runtime: 'runtime',
+});
+
+void caches.delete('pea-precache-v1');
+void caches.delete('pea-cdn-v1');
+void caches.delete('pea-external-v1');
+void caches.delete('pea-docs-v1');
+
+// eslint-disable-next-line @typescript-eslint/no-use-before-define
+precacheAndRoute(self.__WB_MANIFEST);
+cleanupOutdatedCaches();
+registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')));
+
+const defaultStrategy = new StaleWhileRevalidate({
+	cacheName: 'pea-external-v1',
+	plugins: [
+		new ExpirationPlugin({
+			maxEntries: 50,
+			maxAgeSeconds: 60 * 60 * 24,
+			purgeOnQuotaError: true,
+		}),
+		new CacheableResponsePlugin({
+			statuses: [0, 200],
+		}),
+	],
+});
+
+setDefaultHandler((args) => {
+	if (args.request.method === 'GET') {
+		return defaultStrategy.handle(args);
+	}
+	return fetch(args.request);
+});
+
+registerRoute(
+	/^.*\\.(png|jpg|jpeg|gif|svg|ico)/i,
+	new CacheFirst({
+		cacheName: 'pea-media-v1',
+		plugins: [
+			new ExpirationPlugin({
+				maxEntries: 50,
+				maxAgeSeconds: 60 * 60 * 24,
+				purgeOnQuotaError: true,
+			}),
+		],
+	}),
+);
+
+declare const self: ServiceWorkerGlobalScope;
+
+self.addEventListener('install', () => {
+	void self.skipWaiting();
+});
+
+self.addEventListener('message', (event) => {
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		void self.skipWaiting();
+	}
+});
