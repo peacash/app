@@ -21,8 +21,8 @@ pub fn secret(input: &[u8]) -> String {
 }
 
 #[wasm_bindgen]
-pub fn address(secret_key: &str) -> String {
-    let key = match pea_address::secret::decode(secret_key) {
+pub fn address(secret: &str) -> String {
+    let key = match pea_address::secret::decode(secret) {
         Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
         Err(err) => return err.to_string(),
     };
@@ -30,7 +30,7 @@ pub fn address(secret_key: &str) -> String {
 }
 
 #[wasm_bindgen]
-pub fn transaction(address: &str, amount: &str, fee: &str, secret_key: &str) -> String {
+pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> String {
     let public_key_bytes = match pea_address::public::decode(address) {
         Ok(a) => a,
         Err(err) => return err.to_string(),
@@ -43,7 +43,7 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret_key: &str) -> 
         Ok(a) => a,
         Err(err) => return err.to_string(),
     };
-    let key = match pea_address::secret::decode(secret_key) {
+    let key = match pea_address::secret::decode(secret) {
         Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
         Err(err) => return err.to_string(),
     };
@@ -51,7 +51,38 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret_key: &str) -> 
     let mut transaction =
         pea_transaction::Transaction::new(public_key_bytes, amount, fee, timestamp);
     transaction.sign(&key);
+    match transaction.validate() {
+        Ok(()) => {}
+        Err(err) => return err.to_string(),
+    }
     match serde_json::to_string(&transaction) {
+        Ok(a) => a,
+        Err(err) => err.to_string(),
+    }
+}
+
+#[wasm_bindgen]
+pub fn stake(deposit: bool, amount: &str, fee: &str, secret: &str) -> String {
+    let amount: u128 = match pea_int::from_string(amount) {
+        Ok(a) => a,
+        Err(err) => return err.to_string(),
+    };
+    let fee: u128 = match pea_int::from_string(fee) {
+        Ok(a) => a,
+        Err(err) => return err.to_string(),
+    };
+    let key = match pea_address::secret::decode(secret) {
+        Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
+        Err(err) => return err.to_string(),
+    };
+    let timestamp = pea_core::util::timestamp();
+    let mut stake = pea_stake::Stake::new(deposit, amount, fee, timestamp);
+    stake.sign(&key);
+    match stake.validate() {
+        Ok(()) => {}
+        Err(err) => return err.to_string(),
+    }
+    match serde_json::to_string(&stake) {
         Ok(a) => a,
         Err(err) => err.to_string(),
     }

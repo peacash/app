@@ -473,6 +473,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "pea-stake"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a5dc195805ae7d59a54af77a5fca752f4629f94ab854e49d94a69a94d2a09a9"
+dependencies = [
+ "bincode",
+ "hex",
+ "pea-address",
+ "pea-core",
+ "pea-int 0.1.0",
+ "pea-key",
+ "serde",
+ "serde-big-array",
+]
+
+[[package]]
 name = "pea-transaction"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -721,6 +737,7 @@ dependencies = [
  "pea-core",
  "pea-int 0.2.1",
  "pea-key",
+ "pea-stake",
  "pea-transaction",
  "serde_json",
  "wasm-bindgen",
