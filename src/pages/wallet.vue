@@ -11,16 +11,13 @@
 		<Description>
             <div class="flex gap-2 justify-center">
                 <Button @click="generate_new()">Generate New</Button>
-                <Button @clijck="import_secret()">Import</Button>
+                <Button @click="import_secret()">Import</Button>
             </div>
 		</Description>
 		<Description>
             <div class="flex gap-2 justify-center">
                 <Button>Send</Button>
                 <Button>Stake</Button>
-				<router-link v-if="public" class="link" :to="('/address/' + public)">
-                    <Button>Balance</Button>
-                </router-link>
             </div>
 		</Description>
 		<Description>
@@ -44,9 +41,6 @@ export default {
     mounted() {
 		document.title = "Explorer - Pea";
     },
-	unmounted() {
-		clearInterval(this.interval)
-	},
 	methods: {
         generate_new() {
             const array = new Uint32Array(32);
