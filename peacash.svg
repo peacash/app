@@ -1,0 +1,12 @@
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="7000" height="1840" viewBox="0 0 5250 1380">
+  <style>
+    @keyframes a{0%,20%,32%{fill:#fff}22%,24%{fill:#9f9}}@keyframes b{0%,22%,34%{fill:#fff}24%,26%{fill:#9f9}}@keyframes c{0%,24%,36%{fill:#fff}26%,28%{fill:#9f9}}@keyframes d{0%,26%,38%,50%{fill:#fff}28%,30%,70%,90%{fill:#9f9}100%{fill:#fff}}@keyframes e{0%,28%,40%,50%{fill:#fff}30%,32%,70%,90%{fill:#9f9}100%{fill:#fff}}@keyframes f{0%,30%,42%,50%{fill:#fff}32%,34%,70%,90%{fill:#9f9}100%{fill:#fff}}@keyframes g{0%,32%,44%,50%{fill:#fff}34%,36%,70%,90%{fill:#9f9}100%{fill:#fff}}
+  </style>
+  <path style="fill:#fff;animation:a 5s infinite" d="M380 7115V2530h1670v5010h3750v1250h1250v1660H5800v1250H380V7115zm5000 2505v-420H2050v840h3330v-420z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#fff;animation:b 5s infinite" d="M9130 8575v-625H7880V3780h1250V2530h5420v1670H9550v830h5000v2920h-1250v1250H9130v-625zm3750-1455v-420H9550v840h3330v-420z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#fff;animation:c 5s infinite" d="M16630 8370v-830h3750v-840h-3750V5450h-1250V3780h1250V2530h5420v5420h-1250v1250h-4170v-830zm3750-3755v-415h-3330v830h3330v-415z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#9f9;animation:d 5s infinite" d="M24130 11075v-625h-1250V3780h1250V2530h4170v1250h1250v1670h-1670V4200h-3330v5840h3330V8790h1670v1660h-1250v1250h-4170v-625z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#9f9;animation:e 5s infinite" d="M31630 8370v-830h3750v-840h-3750V5450h-1250V3780h1250V2530h5420v5420h-1250v1250h-4170v-830zm3750-3755v-415h-3330v830h3330v-415z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#9f9;animation:f 5s infinite" d="M39130 8575v-625h-1250V6280h1250V5030h3750v-830h-5000V2530h5420v1250h1250v1670h-1250v1250h-3750v840h5000v1660h-5420v-625z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+  <path style="fill:#9f9;animation:g 5s infinite" d="M45380 7115V2530h1670v3750h1250v1260h2080V2530h1670v5420h-1250v1250h-2920V7950h-830v3750h-1670V7115z" transform="matrix(.1 0 0 -.1 0 1380)"/>
+</svg>
