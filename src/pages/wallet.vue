@@ -2,56 +2,77 @@
 	.link {
 		text-decoration: none;
 	}
-	.link:hover {
-		text-decoration: underline;
-	}
+	.public:hover {
+        background-color: #cfc;
+    }
+	.secret:hover {
+        background-color: #fcc;
+    }
+    input {
+        border: none;
+    }
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 mt-12 w-full">
+	<Address v-if="public" :address="public" />
+	<div class="flex flex-col gap-2 my-2 w-full">
 		<Description>
-            <div class="flex gap-2 justify-center">
-                <Button @click="generate_new()">Generate New</Button>
-                <Button @click="import_secret()">Import</Button>
-            </div>
+			<div class="flex gap-2 justify-center">
+				<Button @click="view = 'receive'">Receive</Button>
+				<Button @click="view = 'send'">Send</Button>
+				<Button @click="view = 'stake'">Stake</Button>
+				<Button @click="view = 'secret'">Secret</Button>
+			</div>
 		</Description>
-		<Description>
-            <div class="flex gap-2 justify-center">
-                <Button>Send</Button>
-                <Button>Stake</Button>
-            </div>
+		<Description v-if="(view == 'receive' && public)" >
+			<div class="flex flex-col gap-2 mx-auto">
+				<input disabled v-model="public" type="text" class="
+					public
+                    text-black
+                    rounded
+                    w-full
+                ">
+			</div>
 		</Description>
-		<Description>
-            <div class="flex flex-col gap-2 justify-center">
-                <Button>{{ secret }}</Button>
-                <Button>{{ public }}</Button>
-            </div>
+		<Description v-else-if="(view == 'secret' && secret)" >
+			<div class="flex flex-col gap-2">
+				<input disabled v-model="secret" type="text" class="
+					secret
+                    text-black
+                    rounded
+                    w-full
+                ">
+				<Button class="mx-auto" v-if="secret" @click="remove()">Remove</Button>
+			</div>
 		</Description>
-        <Address v-if="public" :address="public" />
 	</div>
 </template>
 <script>
-import { address, secret } from "../../pkg";
+import util from "../util.ts"
 export default {
-    data() {
+	data() {
 		return {
-            secret: "",
-			public: "",
+			view: "receive",
+            secret: null,
+			public: null
 		}
 	},
-    mounted() {
-		document.title = "Explorer - Pea";
+	mounted() {
+		document.title = "Wallet - Pea"
+		this.load()
     },
 	methods: {
-        generate_new() {
-            const array = new Uint32Array(32);
-            crypto.getRandomValues(array);
-            let s = secret(array);
-            this.secret = s;
-            this.public = address(s);
-        },
-        import_secret() {
-
-        }
-	},
+		load() {
+			this.secret = window.localStorage.getItem("secret")
+			if (this.secret == null) {
+				this.secret = util.generate_secret()
+				window.localStorage.setItem("secret", this.secret)
+			}
+			this.public = util.public(this.secret)
+		},
+		remove() {
+			window.localStorage.removeItem("secret")
+			this.load()
+		}
+	}
 }
 </script>

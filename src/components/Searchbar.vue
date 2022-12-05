@@ -4,7 +4,6 @@
     }
     input {
         border: none;
-        max-width: 60rem;
     }
 </style>
 <template>
