@@ -64,6 +64,10 @@
 						{
 							text: "Home",
 							to: "/"
+						},
+						{
+							text: "Wallet",
+							to: "/wallet"
 						}
 					],
 					href: [

@@ -76,7 +76,6 @@
 	</div>
 </template>
 <script>
-import init, { address, secret } from "../../pkg";
 export default {
     data() {
 		return {
@@ -98,13 +97,6 @@ export default {
 		setTimeout(() => {
 			this.timeout = true
 		}, 1000)
-		init().then((_exports) => {
-			const array = new Uint32Array(10);
-			crypto.getRandomValues(array);
-			let s = secret(array);
-			console.log(s)
-			console.log(address(s))
-		})
     },
 	unmounted() {
 		clearInterval(this.interval)
