@@ -18,18 +18,18 @@
 				</TableRow>
 				<TableRow v-if="(balance !== null)">
 					<TD1 class="w-60">Balance</TD1>
-					<TD2>{{ balance_to_string(balance) }}</TD2>
+					<TD2>{{ fmt(balance) }}</TD2>
 				</TableRow>
 				<TableRow v-if="(balance_staked !== null)">
 					<TD1 class="w-60">Balance&nbsp;staked</TD1>
-					<TD2>{{ balance_to_string(balance_staked) }}</TD2>
+					<TD2>{{ fmt(balance_staked) }}</TD2>
 				</TableRow>
 			</Table>
 		</Description>
 	</div>
 </template>
 <script>
-import { int_to_string } from "../../../pkg";
+import { format_int } from "../../../pkg";
 export default {
     data() {
 		return {
@@ -55,15 +55,15 @@ export default {
 		},
 		fetchData() {
 			if (!this.$route.params.address) return
-			fetch(window.localStorage.getItem("api") + "/balance/" + this.$route.params.address).then(res => res.json()).then(data => {
+			fetch(window.localStorage.getItem("api") + "/balance/" + this.$route.params.address).then(res => res.text()).then(data => {
 				this.balance = data
 			})
-			fetch(window.localStorage.getItem("api") + "/balance_staked/" + this.$route.params.address).then(res => res.json()).then(data => {
+			fetch(window.localStorage.getItem("api") + "/balance_staked/" + this.$route.params.address).then(res => res.text()).then(data => {
 				this.balance_staked = data
 			})
 		},
-		balance_to_string(balance) {
-			return int_to_string(BigInt(balance))
+		fmt(balance) {
+			return format_int(balance)
 		},
 		shorten(string) {
 			return string.slice(0, 12) + "..." + string.slice(-8)

@@ -58,6 +58,10 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret_key: &str) -> 
 }
 
 #[wasm_bindgen]
-pub fn int_to_string(num: u64) -> String {
+pub fn format_int(str: &str) -> String {
+    let num: u128 = match str.parse() {
+        Ok(a) => a,
+        Err(err) => return err.to_string(),
+    };
     pea_int::to_string(num as u128)
 }

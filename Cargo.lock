@@ -452,9 +452,9 @@ dependencies = [
 
 [[package]]
 name = "pea-int"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e3bc33a8fd42437c04465a3997c1a8ca277243b3cab14838694a184ec0229f9f"
+checksum = "34c98a89866ea4c9d3e6962456bb748e750b30c80f767f8d263ce47e41479e4a"
 dependencies = [
  "pea-core",
 ]
@@ -719,7 +719,7 @@ dependencies = [
  "hex",
  "pea-address",
  "pea-core",
- "pea-int 0.2.0",
+ "pea-int 0.2.1",
  "pea-key",
  "pea-transaction",
  "serde_json",
