@@ -11,13 +11,10 @@
         cursor: pointer;
         display: inline-flex;
         font-family: "JetBrains Mono",monospace;
-        height: 3rem;
         justify-content: center;
         line-height: 1;
         list-style: none;
         overflow: hidden;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
         position: relative;
         text-align: left;
         text-decoration: none;
@@ -27,7 +24,6 @@
         touch-action: manipulation;
         white-space: nowrap;
         will-change: box-shadow,transform;
-        font-size: 1.125rem;
     }
     button:focus {
         box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.2) 0 2px 4px, rgba(45, 35, 66, 0.1) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
@@ -42,7 +38,11 @@
     }
 </style>
 <template>
-    <button role="button">
+    <button class="
+        py-3 sm:py-4
+        px-2 sm:px-6 lg:px-8
+        text-xs sm:text-sm md:text lg:text-lg
+    ">
         <slot></slot>
     </button>
 </template>
