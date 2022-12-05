@@ -74,10 +74,6 @@
 						{
 							text: "Pea",
 							href: "https://pea.cash"
-						},
-						{
-							text: "Github",
-							href: "https://github.com/peacash/app"
 						}
 					]
 				}
