@@ -55,8 +55,8 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> Stri
         Ok(()) => {}
         Err(err) => return err.to_string(),
     }
-    match serde_json::to_string(&transaction) {
-        Ok(a) => a,
+    match bincode::serialize(&transaction) {
+        Ok(a) => hex::encode(&a),
         Err(err) => err.to_string(),
     }
 }
@@ -82,8 +82,8 @@ pub fn stake(deposit: bool, amount: &str, fee: &str, secret: &str) -> String {
         Ok(()) => {}
         Err(err) => return err.to_string(),
     }
-    match serde_json::to_string(&stake) {
-        Ok(a) => a,
+    match bincode::serialize(&stake) {
+        Ok(a) => hex::encode(&a),
         Err(err) => err.to_string(),
     }
 }

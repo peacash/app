@@ -83,6 +83,11 @@
                     rounded
                     w-full
 				"></textarea>
+				<textarea disabled v-if="stake_res" v-model="stake_res" cols="30" rows="5" class="
+					text-black
+                    rounded
+                    w-full
+				"></textarea>
 			</div>
 		</Description>
 		<Description v-else-if="(view == 'secret' && secret)" >
@@ -111,11 +116,13 @@ export default {
 			transaction_output: "",
 			transaction_amount: "",
 			transaction_fee: "",
+			transaction_res: null,
 			stake: "",
 			stake_confirm: false,
 			stake_deposit: true,
 			stake_amount: "",
-			stake_fee: ""
+			stake_fee: "",
+			stake_res: null
 		}
 	},
 	mounted() {
@@ -146,10 +153,22 @@ export default {
 		transaction_send() {
 			this.transaction_sign()
 			this.transaction_confirm = false
+			fetch(window.localStorage.getItem("api") + "/transaction", {
+				method: "POST",
+				body: this.transaction
+			}).then(res => res.text()).then(data => {
+				this.transaction_res = data
+			})
 		},
 		stake_send() {
 			this.stake_sign()
 			this.stake_confirm = false
+			fetch(window.localStorage.getItem("api") + "/stake", {
+				method: "POST",
+				body: JSON.stringify(this.stake)
+			}).then(res => res.text()).then(data => {
+				this.stake_res = data
+			})
 		}
 	}
 }
