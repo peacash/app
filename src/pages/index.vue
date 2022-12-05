@@ -63,7 +63,7 @@
 			</Table>
 		</Description>
 		<Description>
-			<Table :bar="true" v-if="(dynamic && sync)">
+			<Table :bar="true" v-if="(dynamic && trusted && sync)">
 				<TableRow class="text-xl justify-center pb-2">Latest Blocks</TableRow>
 				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
 					<TD1>#{{ sync.height - index }}</TD1>	
@@ -76,6 +76,7 @@
 	</div>
 </template>
 <script>
+import init, { address, secret } from "../../pkg";
 export default {
     data() {
 		return {
@@ -97,6 +98,13 @@ export default {
 		setTimeout(() => {
 			this.timeout = true
 		}, 1000)
+		init().then((_exports) => {
+			const array = new Uint32Array(10);
+			crypto.getRandomValues(array);
+			let s = secret(array);
+			console.log(s)
+			console.log(address(s))
+		})
     },
 	unmounted() {
 		clearInterval(this.interval)

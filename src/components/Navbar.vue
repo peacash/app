@@ -73,7 +73,7 @@
 						},
 						{
 							text: "Github",
-							href: "https://github.com/peacash/explorer"
+							href: "https://github.com/peacash/app"
 						}
 					]
 				}

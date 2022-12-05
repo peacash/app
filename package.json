@@ -1,5 +1,5 @@
 {
-  "name": "explorer",
+  "name": "app",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite --port 3333",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peacash/explorer.git"
+    "url": "git+https://github.com/peacash/app.git"
   },
   "bugs": {
-    "url": "https://github.com/peacash/explorer/issues"
+    "url": "https://github.com/peacash/app/issues"
   },
-  "homepage": "https://github.com/peacash/explorer#readme",
+  "homepage": "https://github.com/peacash/app#readme",
   "dependencies": {
     "@vueuse/core": "^5.2.0",
     "@vueuse/head": "^0.6.0",
