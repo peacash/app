@@ -18,7 +18,7 @@
 		<Description>
 			<div class="flex gap-2 justify-center">
 				<Button @click="view = 'receive'">Receive</Button>
-				<Button @click="view = 'send'">Send</Button>
+				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
 				<Button @click="view = 'secret'">Secret</Button>
 			</div>
@@ -33,7 +33,7 @@
                 ">
 			</div>
 		</Description>
-		<Description v-if="(view == 'send' && secret)" >
+		<Description v-if="(view == 'transaction' && secret)" >
 			<div class="flex flex-col gap-2 mx-auto">
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
@@ -50,16 +50,8 @@
                     rounded
                     w-full
                 ">
-				<div class="flex justify-center gap-2">
-					<Button @click="transaction_sign()" v-if="!transaction_confirm">Sign Transaction</Button>
-					<Button @click="transaction_send()" v-else>Confirm send Transaction</Button>
-				</div>
-				<textarea disabled v-if="transaction" v-model="transaction" cols="30" rows="7" class="
-					text-black
-                    rounded
-                    w-full
-				"></textarea>
-				<textarea disabled v-if="transaction_res" v-model="transaction_res" cols="30" rows="7" class="
+				<Button @click="transaction_send()" class="mx-auto">Send</Button>
+				<textarea disabled v-if="transaction" v-model="transaction" rows="2" class="
 					text-black
                     rounded
                     w-full
@@ -80,15 +72,9 @@
                 ">
 				<div class="flex justify-center gap-2">
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
-					<Button @click="stake_sign()" v-if="!stake_confirm">Sign Stake</Button>
-					<Button @click="stake_send()" v-else>Confirm send Stake</Button>
+					<Button @click="stake_send()">Send</Button>
 				</div>
-				<textarea disabled v-if="stake" v-model="stake" cols="30" rows="5" class="
-					text-black
-                    rounded
-                    w-full
-				"></textarea>
-				<textarea disabled v-if="stake_res" v-model="stake_res" cols="30" rows="5" class="
+				<textarea disabled v-if="stake" v-model="stake" rows="2" class="
 					text-black
                     rounded
                     w-full
@@ -120,12 +106,10 @@ export default {
 			transaction_output: "",
 			transaction_amount: "",
 			transaction_fee: "",
-			transaction_res: "",
 			stake: "",
 			stake_deposit: true,
 			stake_amount: "",
-			stake_fee: "",
-			stake_res: ""
+			stake_fee: ""
 		}
 	},
 	mounted() {
@@ -147,7 +131,6 @@ export default {
 		},
 		transaction_sign() {
 			this.transaction = util.transaction(this.transaction_output, this.transaction_amount, this.transaction_fee, this.secret)
-			this.transaction_confirm = true
 		},
 		stake_sign() {
 			this.stake = util.stake(this.stake_deposit, this.stake_amount, this.stake_fee, this.secret)
@@ -155,12 +138,11 @@ export default {
 		},
 		transaction_send() {
 			this.transaction_sign()
-			this.transaction_confirm = false
 			fetch(window.localStorage.getItem("api") + "/transaction", {
 				method: "POST",
 				body: this.transaction
 			}).then(res => res.json()).then(data => {
-				this.transaction_res = data
+				this.transaction = data
 			})
 		},
 		stake_send() {
@@ -170,7 +152,7 @@ export default {
 				method: "POST",
 				body: this.stake
 			}).then(res => res.json()).then(data => {
-				this.stake_res = data
+				this.stake = data
 			})
 		}
 	}
