@@ -50,7 +50,10 @@
                     rounded
                     w-full
                 ">
-				<Button @click="transaction_sign()" class="mx-auto">Sign Transaction</Button>
+				<div class="flex justify-center gap-2">
+					<Button @click="transaction_sign()" v-if="!transaction_confirm">Sign Transaction</Button>
+					<Button @click="transaction_sign()" v-else>Confirm send Transaction</Button>
+				</div>
 				<textarea disabled v-if="transaction" v-model="transaction" cols="30" rows="7" class="
 					text-black
                     rounded
@@ -72,7 +75,8 @@
                 ">
 				<div class="flex justify-center gap-2">
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
-					<Button @click="stake_sign()">Sign Stake</Button>
+					<Button @click="stake_sign()" v-if="!stake_confirm">Sign Stake</Button>
+					<Button @click="stake_sign()" v-else>Confirm send Stake</Button>
 				</div>
 				<textarea disabled v-if="stake" v-model="stake" cols="30" rows="5" class="
 					text-black
@@ -102,11 +106,13 @@ export default {
 			view: "receive",
             secret: null,
 			public: null,
-			transaction: "",
+			transaction: false,
+			transaction_confirm: "",
 			transaction_output: "",
 			transaction_amount: "",
 			transaction_fee: "",
 			stake: "",
+			stake_confirm: false,
 			stake_deposit: true,
 			stake_amount: "",
 			stake_fee: ""
@@ -131,9 +137,11 @@ export default {
 		},
 		transaction_sign() {
 			this.transaction = util.transaction(this.transaction_output, this.transaction_amount, this.transaction_fee, this.secret)
+			this.transaction_confirm = true
 		},
 		stake_sign() {
 			this.stake = util.stake(this.stake_deposit, this.stake_amount, this.stake_fee, this.secret)
+			this.stake_confirm = true
 		}
 	}
 }
