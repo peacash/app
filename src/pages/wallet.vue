@@ -29,6 +29,7 @@
                 <Button>{{ public }}</Button>
             </div>
 		</Description>
+        <Address v-if="public" :address="public" />
 	</div>
 </template>
 <script>

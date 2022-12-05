@@ -1,0 +1,82 @@
+<style scoped>
+	.link {
+		text-decoration: none;
+	}
+	.link:hover {
+		text-decoration: underline;
+	}
+</style>
+<template>
+	<div class="flex flex-col gap-2 my-2 w-full">
+		<Description>
+			<Table :bar="true" v-if="balance !== null && balance_staked !== null">
+				<TableRow class="text-xl justify-center pb-2">Address</TableRow>
+				<TableRow v-if="(address !== null)">
+					<TD1 class="w-60">Public&nbsp;key</TD1>
+					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(address) }}</TD2>
+					<TD2 v-else>{{ address }}</TD2>
+				</TableRow>
+				<TableRow v-if="(balance !== null)">
+					<TD1 class="w-60">Balance</TD1>
+					<TD2>{{ fmt(balance) }}</TD2>
+				</TableRow>
+				<TableRow v-if="(balance_staked !== null)">
+					<TD1 class="w-60">Balance&nbsp;staked</TD1>
+					<TD2>{{ fmt(balance_staked) }}</TD2>
+				</TableRow>
+			</Table>
+		</Description>
+	</div>
+</template>
+<script>
+import { format_int } from "../../pkg";
+export default {
+    props: {
+        address: String
+    },
+    data() {
+		return {
+            balance: null,
+            balance_staked: null,
+            shorten_address: true
+		}
+	},
+    mounted() {
+		this.loop();
+    },
+	unmounted() {
+		clearInterval(this.interval)
+	},
+	methods: {
+		loop() {
+			this.fetchData();
+			this.interval = setInterval(() => {
+				this.fetchData()
+			}, 3000);
+		},
+		fetchData() {
+			if (!this.address) return
+			fetch(window.localStorage.getItem("api") + "/balance/" + this.address).then(res => res.text()).then(data => {
+				this.balance = data
+			})
+			fetch(window.localStorage.getItem("api") + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
+				this.balance_staked = data
+			})
+		},
+		fmt(balance) {
+			return format_int(balance)
+		},
+		shorten(string) {
+			return string.slice(0, 12) + "..." + string.slice(-8)
+		}
+	},
+	watch: {
+		'address': {
+			handler() {
+				this.fetchData()
+			},
+			immediate: true,
+		}
+	}
+}
+</script>
