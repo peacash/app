@@ -10,6 +10,9 @@
 		overscroll-behavior-y: none;
 		@apply overflow-auto h-[calc(100vh)];
 	}
+	.link {
+		font-weight: 600 !important;
+	}
 }
 @layer components {
 	body {
