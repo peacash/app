@@ -58,7 +58,6 @@ self.addEventListener('install', () => {
 });
 
 self.addEventListener('message', (event) => {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	if (event.data && event.data.type === 'SKIP_WAITING') {
 		void self.skipWaiting();
 	}
