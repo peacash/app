@@ -7,7 +7,7 @@
     }
 </style>
 <template>
-    <div class="p-2 rounded ring-1 ring-black ring-opacity-20">
+    <div class="p-2 rounded ring-1 ring-black ring-opacity-10 sm:ring-opacity-20">
         <table>
             <slot></slot>
         </table>

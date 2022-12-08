@@ -28,7 +28,7 @@
 				<input disabled v-model="public" type="text" placeholder="output address" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
@@ -42,26 +42,26 @@
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<input v-model="transaction_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<input v-model="transaction_fee" type="text" placeholder="fee" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<Button @click="transaction_send()" class="mx-auto">Send</Button>
 				<textarea disabled v-if="transaction" v-model="transaction" rows="2" class="
 					text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
 				"></textarea>
 			</div>
@@ -71,13 +71,13 @@
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<input v-model="stake_fee" type="text" placeholder="fee" class="
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<div class="flex justify-center gap-10">
@@ -87,7 +87,7 @@
 				<textarea disabled v-if="stake" v-model="stake" rows="2" class="
 					text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
 				"></textarea>
 			</div>
@@ -98,7 +98,7 @@
 					secret
                     text-black
                     rounded
-					ring-1 ring-black ring-opacity-20
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
 				<Button class="mx-auto" v-if="secret" @click="remove()">Remove</Button>

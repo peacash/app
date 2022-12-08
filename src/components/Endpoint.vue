@@ -14,7 +14,7 @@
                     class="
                         text-black
                         rounded
-                        ring-1 ring-black ring-opacity-20
+                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                         w-full
                     "
                     type="text" placeholder="http://0.0.0.0:9332">
@@ -26,7 +26,7 @@
                         rounded
                         text-sm md:text-lg
                         w-24 sm:w-32 md:w-40
-                        ring-1 ring-black ring-opacity-20
+                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                         cursor-pointer
                     ">
             </form>
@@ -42,7 +42,7 @@
                         text-black
                         rounded
                         w-full
-                        ring-1 ring-black ring-opacity-20
+                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     "
                     type="text" placeholder="localhost:9332">
             </div>

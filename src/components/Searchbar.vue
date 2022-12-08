@@ -8,7 +8,7 @@
                 text-black
                 rounded
                 w-full
-                ring-1 ring-black ring-opacity-20
+                ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
             "
             type="text" placeholder="Search Blockchain, Transactions, Addresses, Blocks and Stakes">
     </Description>
