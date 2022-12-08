@@ -1,4 +1,5 @@
 <template>
+	<Splash />
 	<Navbar />
 	<Searchbar />
 	<router-view />
