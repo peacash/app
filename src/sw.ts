@@ -13,11 +13,8 @@ setCacheNameDetails({
 });
 
 void caches.delete('pea-precache-v1');
-void caches.delete('pea-cdn-v1');
 void caches.delete('pea-external-v1');
-void caches.delete('pea-docs-v1');
 
-// eslint-disable-next-line @typescript-eslint/no-use-before-define
 precacheAndRoute(self.__WB_MANIFEST);
 cleanupOutdatedCaches();
 registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')));
