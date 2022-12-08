@@ -91,8 +91,13 @@ export default {
             this.endpoint_input = ""
         },
         remove(index) {
+            let endpoint = this.endpoints[index]
             this.endpoints.splice(index, 1)
             localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
+            if (this.endpoint == endpoint) {
+                this.endpoint = null
+                localStorage.removeItem('endpoint')
+            }
         },
         select(index) {
             let endpoint = this.endpoints[index]
