@@ -31,9 +31,9 @@
                     ">
             </form>
         </Description>
-        <Description v-for="(host, index) in endpoints" :key="(host, index)">
-            <div class="flex gap-10">
-                <input
+        <Description>
+            <div class="flex flex-col gap-2">
+                <input v-for="(host, index) in endpoints" :key="(host, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
@@ -44,7 +44,7 @@
                         w-full
                         sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
-                    type="text" placeholder="localhost:9332">
+                    type="text">
             </div>
         </Description>
     </div>
