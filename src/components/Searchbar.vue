@@ -10,18 +10,6 @@
     <div class="flex flex-col gap-2 my-2 w-full">
         <Description>
             <input
-                v-model=api_value
-                v-on:input="search"
-                class="
-                    text-black
-                    rounded
-                    w-full
-                    shadow
-                "
-                type="text" placeholder="http://localhost:9332">
-        </Description>
-        <Description>
-            <input
                 v-model=search_value
                 ref="search"
                 v-on:input="search"
@@ -39,19 +27,13 @@
 export default {
 	data() {
 		return {
-			search_value: this.$route.params.search || "",
-            api_value: localStorage.getItem('api') || (() => {
-                let api = "http://localhost:9332"
-                localStorage.setItem('api', api)
-                return api
-            })()
+			search_value: this.$route.params.search || ""
 		}
 	},
 	methods: {
 		search() {
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
-                localStorage.setItem('api', this.api_value)
                 if (this.search_value.trim()) {
                     this.search_value = this.search_value.trim()
                     this.$router.push('/search/' + this.search_value)
