@@ -16,7 +16,7 @@
 	<Address v-if="public" :address="public" />
 	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-			<div class="flex gap-10 justify-center my-10">
+			<div class="flex gap-2 md:gap-10 justify-center my-10">
 				<Button @click="view = 'receive'">Receive</Button>
 				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
