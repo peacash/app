@@ -27,7 +27,7 @@ export default defineConfig({
 				background_color: '#ffffff',
 				name: 'Pea App',
 				short_name: 'Pea',
-				start_url: '/',
+				start_url: '.',
 				display: 'standalone',
 				description:
 					"Pea.",
@@ -43,9 +43,9 @@ export default defineConfig({
 						sizes: '512x512',
 						type: 'image/png',
 						purpose: 'any maskable',
-					},
-				],
-			},
+					}
+				]
+			}
 		}),
 		Pages(),
 		ViteComponents({
