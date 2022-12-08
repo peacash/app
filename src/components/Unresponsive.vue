@@ -8,11 +8,9 @@
 </template>
 <script>
 export default {
-    props: {
-        endpoint: String
-    },
     data() {
 		return {
+            endpoint: localStorage.getItem("endpoint"),
 			https: window.location.protocol === "https:",
 			host: window.location.host
 		}

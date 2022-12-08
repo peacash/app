@@ -7,16 +7,15 @@
 	}
 </style>
 <template>
-	<Searchbar />
-	<div v-if="((sync === null || info === null || dynamic === null || trusted === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
-		<Unresponsive :endpoint=endpoint />
+	<div v-if="((sync === null || info === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
+		<Unresponsive />
 	</div>
-	<div v-if="(sync !== null && info !== null && dynamic !== null && trusted !== null)" class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(sync !== null && info !== null)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
             <div class="
                 flex justify-center
                 text-black
-            ">General information about Node</div>
+            ">Home</div>
         </Description>
 		<Description>
 			<Table>
@@ -63,20 +62,15 @@
 export default {
     data() {
 		return {
-			dynamic: null,
-			trusted: null,
 			sync: null,
 			info: null,
 			interval: null,
 			timeout: false,
-			https: window.location.protocol === "https:",
-			host: window.location.host,
-			endpoint: null,
 			shorten_public_key: true
 		}
 	},
     mounted() {
-		document.title = "Explorer - Pea";
+		document.title = "Pea";
 		this.loop();
 		setTimeout(() => {
 			this.timeout = true
@@ -98,12 +92,6 @@ export default {
 		fetchData() {
 			let endpoint = window.localStorage.getItem("endpoint");
 			if (!endpoint) return
-			fetch(endpoint + "/dynamic").then(res => res.json()).then(data => {
-				this.dynamic = data
-			})
-			fetch(endpoint + "/trusted").then(res => res.json()).then(data => {
-				this.trusted = data
-			})
 			fetch(endpoint + "/sync").then(res => res.json()).then(data => {
 				this.sync = data
 			})

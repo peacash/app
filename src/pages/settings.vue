@@ -4,7 +4,7 @@
 <script>
 export default {
     mounted() {
-        document.title = "Pea"
+        document.title = "Settings - Pea"
     }
 }
 </script>

@@ -13,7 +13,7 @@
     }
 </style>
 <template>
-	<Address v-if="public" :address="public" />
+	<Address v-if="public" :address="public">Wallet</Address>
 	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
 			<div class="flex gap-2 md:gap-10 justify-center">

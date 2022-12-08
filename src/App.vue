@@ -1,6 +1,7 @@
 <template>
 	<Splash />
 	<Navbar />
+	<Searchbar />
 	<router-view />
 </template>
 <script>

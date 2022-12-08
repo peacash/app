@@ -7,10 +7,18 @@
 	}
 </style>
 <template>
-	<div v-if="(balance === null || balance_staked === null)" class="flex flex-col justify-center mx-auto my-4">
-		<Unresponsive :endpoint=endpoint />
+	<div v-if="((balance === null || balance_staked === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
+		<Unresponsive />
 	</div>
 	<div v-if="(balance !== null && balance_staked !== null)" class="flex flex-col gap-10 my-10 w-full">
+		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">
+				<slot></slot>
+			</div>
+        </Description>
 		<Description>
 			<Table>
 				<TableRow v-if="(address !== null)">
@@ -40,11 +48,15 @@ export default {
 		return {
             balance: null,
             balance_staked: null,
-            shorten_address: true
+            shorten_address: true,
+			timeout: false
 		}
 	},
     mounted() {
 		this.loop();
+		setTimeout(() => {
+			this.timeout = true
+		}, 1000)
     },
 	unmounted() {
 		clearInterval(this.interval)

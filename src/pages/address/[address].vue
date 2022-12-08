@@ -1,5 +1,5 @@
 <template>
-	<Address :addres="this.$route.params.address" />
+	<Address :addres="this.$route.params.address">Address</Address>
 </template>
 <script>
 import { format_int } from "../../../pkg";
