@@ -4,7 +4,7 @@
         height: 100%;
         width: 100%;
         z-index: 100;
-        animation: a 500ms;
+        animation: a 1s;
         visibility: hidden;
         user-select: none;
         background-color: #fef;
