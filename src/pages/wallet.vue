@@ -16,7 +16,7 @@
 	<Address v-if="public" :address="public" />
 	<div class="flex flex-col gap-2 my-2 w-full">
 		<Description>
-			<div class="flex gap-2 justify-center">
+			<div class="flex gap-2 justify-center my-10">
 				<Button @click="view = 'receive'">Receive</Button>
 				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
@@ -25,12 +25,6 @@
 		</Description>
 		<Description v-if="(view == 'receive' && public)" >
 			<div class="flex flex-col gap-2 mx-auto">
-				<input disabled v-model="public" type="text" class="
-					public
-                    text-black
-                    rounded
-                    w-full
-                ">
 				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
 					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;" class="p-5 w-full" />
 				</div>
