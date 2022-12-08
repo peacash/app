@@ -10,6 +10,8 @@ setCacheNameDetails({
 	precache: 'precache',
 	runtime: 'runtime',
 })
+void caches.delete('pea-precache-v1');
+void caches.delete('pea-external-v1');
 precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
 registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')))

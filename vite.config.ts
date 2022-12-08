@@ -26,11 +26,11 @@ export default defineConfig({
 			manifest: {
 				theme_color: '#ffffff',
 				background_color: '#ffffff',
-				name: 'Pea App',
+				name: 'Pea',
 				short_name: 'Pea',
 				start_url: '.',
 				display: 'standalone',
-				description: "The Pea Project",
+				description: "PeaCash",
 				icons: [
 					{
 						src: '/android-chrome-192x192.png',
