@@ -31,7 +31,10 @@
                     rounded
                     w-full
                 ">
-				<vue-qr class="w-80 mx-auto" :dotScale=.9 backgroundColor="#00000000" colorLight="#00000000" :text="'http://app.pea.cash/#/wallet?output=' + public" :size=512 :correctLevel=0></vue-qr>
+				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
+					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;" />
+				</div>
+				<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 mx-auto" style="cursor: pointer;" />
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
@@ -96,7 +99,6 @@
 	</div>
 </template>
 <script>
-import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 import util from "../util.ts"
 export default {
 	data() {
@@ -111,7 +113,8 @@ export default {
 			stake: "",
 			stake_deposit: true,
 			stake_amount: "",
-			stake_fee: ""
+			stake_fee: "",
+			big_qr: false
 		}
 	},
 	mounted() {
@@ -121,7 +124,6 @@ export default {
 		}
 		this.load()
     },
-	components: {VueQr},
 	methods: {
 		load() {
 			this.secret = window.localStorage.getItem("secret")
