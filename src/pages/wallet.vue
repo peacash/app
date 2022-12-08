@@ -140,7 +140,7 @@ export default {
 		},
 		transaction_send() {
 			this.transaction_sign()
-			fetch(window.localStorage.getItem("api") + "/transaction", {
+			fetch(window.localStorage.getItem("endpoint") + "/transaction", {
 				method: "POST",
 				body: this.transaction
 			}).then(res => res.json()).then(data => {
@@ -150,7 +150,7 @@ export default {
 		stake_send() {
 			this.stake_sign()
 			this.stake_confirm = false
-			fetch(window.localStorage.getItem("api") + "/stake", {
+			fetch(window.localStorage.getItem("endpoint") + "/stake", {
 				method: "POST",
 				body: this.stake
 			}).then(res => res.json()).then(data => {

@@ -8,21 +8,35 @@
 </style>
 <template>
     <div class="flex flex-col gap-2 my-2 w-full">
+        <Description v-if="endpoint">
+            <label for="selected" class="text-sm ml-1">Selected</label>
+            <input
+                disabled
+                v-model=endpoint
+                name="selected"
+                ref="endpoint"
+                class="
+                    text-black
+                    rounded
+                    w-full
+                    shadow
+                "
+                type="text">
+        </Description>
         <Description>
-            <label for="endpoint" class="text-sm ml-1">Endpoint</label>
+            <label for="endpoint" class="text-sm ml-1">Add new</label>
             <form @submit="add" class="flex gap-2">
                 <input
-                    v-model=endpoint
-                    v-on:input="search"
+                    v-model=endpoint_input
                     name="endpoint"
-                    ref="endpoint"
+                    ref="endpoint_input"
                     class="
                         text-black
                         rounded
                         w-full
                         shadow
                     "
-                    type="text" placeholder="localhost:9332">
+                    type="text" placeholder="http://0.0.0.0:9332">
                 <input
                     type="submit"
                     value="Add"
@@ -39,6 +53,7 @@
         <Description v-for="(host, index) in endpoints" :key="(host, index)">
             <div class="flex gap-2">
                 <input
+                    @keydown="select_enter($event, index)"
                     @input="update($event, index)"
                     :value=host
                     class="
@@ -60,6 +75,18 @@
                         shadow
                         cursor-pointer
                     ">
+                <input
+                    type="submit"
+                    value="Select"
+                    @click="select(index)"
+                    class="
+                        text-black
+                        rounded
+                        text-sm md:text-lg
+                        w-24 sm:w-32 md:w-40
+                        shadow
+                        cursor-pointer
+                    ">
             </div>
         </Description>
     </div>
@@ -68,47 +95,53 @@
 export default {
 	data() {
 		return {
-			endpoint: "",
+			endpoint_input: "",
+			endpoint: localStorage.getItem("endpoint"),
             endpoints: []
 		}
 	},
 	methods: {
         add(e) {
             e.preventDefault()
-            if (!this.endpoint) {
-                this.$refs.endpoint.focus()
+            if (!this.endpoint_input) {
+                this.$refs.endpoint_input.focus()
                 return
             }
+            this.endpoint = this.endpoint_input
             this.endpoints.unshift(this.endpoint)
-            localStorage.setItem('endpoint', this.endpoint)
+            localStorage.setItem('endpoint', this.endpoint_input)
             localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
-            this.endpoint = ""
+            this.endpoint_input = ""
         },
         remove(index) {
             this.endpoints.splice(index, 1)
             localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
         },
+        select(index) {
+            let endpoint = this.endpoints[index]
+            localStorage.setItem('endpoint', endpoint)
+            this.endpoint = endpoint
+        },
+        select_enter(e, index) {
+            if (e.key != "Enter") {
+                return
+            }
+            let endpoint = this.endpoints[index]
+            localStorage.setItem('endpoint', endpoint)
+            this.endpoint = endpoint
+        },
         update(e, index) {
             if (!e.target.value) {
                 this.remove(index)
+                this.$refs.endpoint_input.focus()
                 return
             }
             this.endpoints[index] = e.target.value
             localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
-        },
-		search() {
-            clearTimeout(this.timer)
-            this.timer = setTimeout(() => {
-                localStorage.setItem('api', this.api_value)
-                if (this.search_value.trim()) {
-                    this.search_value = this.search_value.trim()
-                    this.$router.push('/search/' + this.search_value)
-                }
-                else this.$router.push('/')
-            }, 250)
-		}
+        }
 	},
 	mounted() {
+        console.log(this.endpoint)
         let endpoints = JSON.parse(localStorage.getItem("endpoints"))
         if (endpoints?.length) {
             this.endpoints = endpoints

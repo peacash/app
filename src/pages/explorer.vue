@@ -10,7 +10,7 @@
 	<div class="flex flex-col gap-2 my-2 w-full">
 		<Description>
 			<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
-				<Unresponsive :api="api" />
+				<Unresponsive :endpoint=endpoint />
 			</div>
 			<Table v-if="(sync && info)">
 				<TableRow class="text-xl justify-center pb-2">General information about Node</TableRow>
@@ -87,7 +87,7 @@ export default {
 			timeout: false,
 			https: window.location.protocol === "https:",
 			host: window.location.host,
-			api: null,
+			endpoint: null,
 			shorten_public_key: true
 		}
 	},
@@ -112,17 +112,17 @@ export default {
 			return string.slice(0, 12) + "..." + string.slice(-8)
 		},
 		fetchData() {
-			this.api = window.localStorage.getItem("api");
-			fetch(this.api + "/dynamic").then(res => res.json()).then(data => {
+			this.endpoint = window.localStorage.getItem("endpoint");
+			fetch(this.endpoint + "/dynamic").then(res => res.json()).then(data => {
 				this.dynamic = data
 			})
-			fetch(this.api + "/trusted").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/trusted").then(res => res.json()).then(data => {
 				this.trusted = data
 			})
-			fetch(this.api + "/sync").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/sync").then(res => res.json()).then(data => {
 				this.sync = data
 			})
-			fetch(this.api + "/info").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/info").then(res => res.json()).then(data => {
 				this.info = data
 			})
 		}

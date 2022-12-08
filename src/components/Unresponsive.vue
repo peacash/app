@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">API endpoint <i>{{ api }}</i> seems unresponsive.</div>
+    <div class="text-center">Endpoint <i>{{ endpoint }}</i> seems unresponsive.</div>
     <div v-if="https" class="text-center">
         Try the
         <a :href="'http://' + host">http version</a>
@@ -9,7 +9,7 @@
 <script>
 export default {
     props: {
-        api: String
+        endpoint: String
     },
     data() {
 		return {

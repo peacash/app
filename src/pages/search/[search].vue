@@ -12,20 +12,20 @@ export default {
     data() {
 		return {
 			failed: false,
-			api: null,
+			endpoint: null,
 			timeout: false
 		}
 	},
 	methods: {
 		fetchData() {
-			this.api = window.localStorage.getItem("api");
+			this.endpoint = window.localStorage.getItem("endpoint");
 			let search = this.$route.params.search
 			if (!search) {
 				return
 			}
 			search = search.toLowerCase()
 			if (search === parseInt(search).toString() && parseInt(search) !== NaN) {
-				fetch(this.api + "/hash/" + search).then(res => res.json()).then(data => {
+				fetch(this.endpoint + "/hash/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/block/' + data)
 				}).catch(() => {
 					this.failed = true
@@ -33,20 +33,20 @@ export default {
 				return
 			}
 			if (search.toLowerCase().startsWith('0x')) {
-				fetch(this.api + "/balance/" + search).then(res => res.json()).then(data => {
+				fetch(this.endpoint + "/balance/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/address/' + search)
 				}).catch(() => {
 					this.failed = true
 				})
 				return
 			}
-			fetch(this.api + "/block/" + search).then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/block/" + search).then(res => res.json()).then(data => {
 				this.$router.replace('/block/' + search)
 			}).catch(() => {
-				fetch(this.api + "/transaction/" + search).then(res => res.json()).then(data => {
+				fetch(this.endpoint + "/transaction/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/transaction/' + search)
 				}).catch(() => {
-					fetch(this.api + "/stake/" + search).then(res => res.json()).then(data => {
+					fetch(this.endpoint + "/stake/" + search).then(res => res.json()).then(data => {
 						this.$router.replace('/stake/' + search)
 					}).catch(() => {
 						this.failed = true

@@ -33,7 +33,7 @@ export default {
 			timeout: false,
 			https: window.location.protocol === "https:",
 			host: window.location.host,
-			api: null,
+			endpoint: null,
 			shorten_public_key: true
 		}
 	},
@@ -58,17 +58,17 @@ export default {
 			return string.slice(0, 12) + "..." + string.slice(-8)
 		},
 		fetchData() {
-			this.api = window.localStorage.getItem("api");
-			fetch(this.api + "/dynamic").then(res => res.json()).then(data => {
+			this.endpoint = window.localStorage.getItem("endpoint");
+			fetch(this.endpoint + "/dynamic").then(res => res.json()).then(data => {
 				this.dynamic = data
 			})
-			fetch(this.api + "/trusted").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/trusted").then(res => res.json()).then(data => {
 				this.trusted = data
 			})
-			fetch(this.api + "/sync").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/sync").then(res => res.json()).then(data => {
 				this.sync = data
 			})
-			fetch(this.api + "/info").then(res => res.json()).then(data => {
+			fetch(this.endpoint + "/info").then(res => res.json()).then(data => {
 				this.info = data
 			})
 		}

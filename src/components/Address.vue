@@ -56,10 +56,10 @@ export default {
 		},
 		fetchData() {
 			if (!this.address) return
-			fetch(window.localStorage.getItem("api") + "/balance/" + this.address).then(res => res.text()).then(data => {
+			fetch(window.localStorage.getItem("endpoint") + "/balance/" + this.address).then(res => res.text()).then(data => {
 				this.balance = data
 			})
-			fetch(window.localStorage.getItem("api") + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
+			fetch(window.localStorage.getItem("endpoint") + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
 				this.balance_staked = data
 			})
 		},
