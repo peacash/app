@@ -4,7 +4,7 @@
         height: 100%;
         width: 100%;
         z-index: 100;
-        animation: a 2.5s;
+        animation: a 500ms;
         visibility: hidden;
         user-select: none;
         background-color: #fef;
@@ -18,7 +18,7 @@
             opacity: 1;
             visibility: visible;
         }
-        80% {
+        50% {
             opacity: 1;
         }
         100% {
@@ -29,6 +29,6 @@
 </style>
 <template>
     <div class="flex jusfity-center">
-        <img class="p-10 mx-auto" src="/peacash.svg" alt="">
+        <img class="p-10 mx-auto" src="/peacash-white.svg" alt="">
     </div>
 </template>
