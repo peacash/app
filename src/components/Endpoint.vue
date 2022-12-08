@@ -12,27 +12,17 @@
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Description>
-            <label for="selected" class="text-sm ml-1">Selected</label>
-            <input
-                disabled
-                v-model=endpoint
-                name="selected"
-                ref="endpoint"
-                class="
-                    text-black
-                    rounded
-                    w-full
-                    shadow
-                "
-                type="text"
-                style="background-color: #f6fff6;">
+            <div class="
+                flex justify-center
+                text-black
+                rounded
+                w-full
+            ">{{ endpoint }}</div>
         </Description>
         <Description class="mb-8">
-            <label for="endpoint" class="text-sm ml-1">Add new</label>
             <form @submit="add" class="flex gap-2">
                 <input
                     v-model=endpoint_input
-                    name="endpoint"
                     ref="endpoint_input"
                     class="
                         text-black
