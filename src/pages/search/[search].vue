@@ -29,7 +29,7 @@ export default {
 				this.$router.replace('/wallet')
 				return
 			}
-			if (["e", "ex", "exp", "expl", "explo", "explor", "explore", "explorer", "x"].includes(search)) {
+			if (["e", "ex", "exp", "expl", "explo", "explor", "explore", "explorer", "x", "node", "latest", "blocks", "staker", "stakers"].includes(search)) {
 				this.$router.replace('/explorer')
 				return
 			}
