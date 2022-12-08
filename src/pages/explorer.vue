@@ -7,7 +7,10 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
+		<Unresponsive :endpoint=endpoint />
+	</div>
+	<div v-if="(dynamic && trusted && sync)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
             <div class="
                 flex justify-center
@@ -15,42 +18,39 @@
             ">General information about Node</div>
         </Description>
 		<Description>
-			<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
-				<Unresponsive :endpoint=endpoint />
-			</div>
-			<Table v-if="(sync && info)">
-				<TableRow v-if="sync">
+			<Table>
+				<TableRow>
 					<TD1 class="w-60">Synchronization</TD1>	
 					<TD2>{{ sync.sync }}</TD2>	
 				</TableRow>
-				<TableRow v-if="sync">
+				<TableRow>
 					<TD1 class="w-60">Last&nbsp;block&nbsp;seen</TD1>	
 					<TD2>{{ sync.last }}</TD2>	
 				</TableRow>
-				<TableRow v-if="sync">
+				<TableRow>
 					<TD1 class="w-60">Height</TD1>	
 					<TD2>{{ sync.height }}</TD2>	
 				</TableRow>
-				<TableRow v-if="info">
+				<TableRow>
 					<TD1 class="w-60">Tree&nbsp;size</TD1>	
 					<TD2>{{ info.tree_size }}</TD2>	
 				</TableRow>
-				<TableRow v-if="info">
+				<TableRow>
 					<TD1 class="w-60">Public&nbsp;key</TD1>	
 					<TD2 v-if="shorten_public_key" @click="(shorten_public_key = false)">{{ shorten(info.public_key) }}</TD2>	
 					<TD2 v-else>
 						<router-link class="link" :to="'/address/' + info.public_key">{{ info.public_key }}</router-link>
 					</TD2>	
 				</TableRow>
-				<TableRow v-if="info">
+				<TableRow>
 					<TD1 class="w-60">Time</TD1>	
 					<TD2>{{ info.time }}</TD2>	
 				</TableRow>
-				<TableRow v-if="info">
+				<TableRow>
 					<TD1 class="w-60">Uptime</TD1>	
 					<TD2>{{ info.uptime }}</TD2>	
 				</TableRow>
-				<TableRow v-if="info">
+				<TableRow>
 					<TD1 class="w-60">Tick</TD1>	
 					<TD2>{{ info.lag }} ms</TD2>	
 				</TableRow>
@@ -63,7 +63,7 @@
             ">Stakers Queue</div>
         </Description>
 		<Description>
-			<Table v-if="dynamic">
+			<Table>
 				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>	
 					<TD2 class="justify-center">
@@ -79,7 +79,7 @@
             ">Latest Blocks</div>
         </Description>
 		<Description>
-			<Table v-if="(dynamic && trusted && sync)">
+			<Table>
 				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
 					<TD1>#{{ sync.height - index }}</TD1>	
 					<TD2 class="justify-center">

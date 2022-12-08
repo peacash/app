@@ -7,9 +7,12 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(balance === null || balance_staked === null)" class="flex flex-col justify-center mx-auto my-4">
+		<Unresponsive :endpoint=endpoint />
+	</div>
+	<div v-if="(balance !== null && balance_staked !== null)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-			<Table v-if="balance !== null && balance_staked !== null">
+			<Table>
 				<TableRow v-if="(address !== null)">
 					<TD1 class="w-60">Public&nbsp;key</TD1>
 					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(address) }}</TD2>
