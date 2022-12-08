@@ -29,6 +29,7 @@ export default defineConfig({
 				name: 'Pea App',
 				short_name: 'Pea',
 				start_url: '.',
+				scope: '.',
 				display: 'standalone',
 				description: "The Pea Project",
 				icons: [
