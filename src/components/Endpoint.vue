@@ -42,7 +42,7 @@
                         text-black
                         rounded
                         w-full
-                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+                        sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
                     type="text" placeholder="localhost:9332">
             </div>
