@@ -6,7 +6,7 @@
                 text-black
             ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
         </Description>
-        <Description class="mb-8">
+        <Description>
             <form @submit="add" class="flex gap-2 md:gap-10">
                 <input
                     v-model=endpoint_input
