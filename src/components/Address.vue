@@ -12,14 +12,6 @@
 	</div>
 	<div v-if="(balance !== null && balance_staked !== null)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">
-				<slot></slot>
-			</div>
-        </Description>
-		<Description>
 			<Table>
 				<TableRow v-if="(address !== null)">
 					<TD1 class="w-60">Public&nbsp;key</TD1>

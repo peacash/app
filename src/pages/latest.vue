@@ -35,6 +35,7 @@ export default {
 		return {
 			dynamic: null,
 			trusted: null,
+			sync: null,
 			interval: null,
 			timeout: false
 		}

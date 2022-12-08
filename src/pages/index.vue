@@ -12,12 +12,6 @@
 	</div>
 	<div v-if="(sync !== null && info !== null)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Home</div>
-        </Description>
-		<Description>
 			<Table>
 				<TableRow>
 					<TD1 class="w-60">Synchronization</TD1>	
@@ -56,6 +50,16 @@
 				</TableRow>
 			</Table>
 		</Description>
+		<Description>
+            <div class="
+                flex justify-center
+                text-black
+				gap-10
+            ">
+				<router-link class="link" to="/stakers">/stakers</router-link>
+				<router-link class="link" to="/latest">/latest</router-link>
+			</div>
+        </Description>
 	</div>
 </template>
 <script>
