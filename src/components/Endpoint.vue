@@ -7,7 +7,7 @@
     }
 </style>
 <template>
-    <div class="flex flex-col gap-2 my-2 w-full">
+    <div class="flex flex-col gap-2 w-full">
         <Description v-if="endpoint">
             <label for="selected" class="text-sm ml-1">Selected</label>
             <input
@@ -21,9 +21,10 @@
                     w-full
                     shadow
                 "
-                type="text">
+                type="text"
+                style="background-color: #f6fff6;">
         </Description>
-        <Description>
+        <Description class="mb-8">
             <label for="endpoint" class="text-sm ml-1">Add new</label>
             <form @submit="add" class="flex gap-2">
                 <input
