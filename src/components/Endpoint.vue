@@ -17,7 +17,7 @@
                 text-black
                 rounded
                 w-full
-            ">{{ endpoint }}</div>
+            ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
         </Description>
         <Description class="mb-8">
             <form @submit="add" class="flex gap-2">
