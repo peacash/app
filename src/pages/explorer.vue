@@ -76,7 +76,7 @@
             <div class="
                 flex justify-center
                 text-black
-            ">Most recent Blocks</div>
+            ">Latest Blocks</div>
         </Description>
 		<Description>
 			<Table v-if="(dynamic && trusted && sync)">
