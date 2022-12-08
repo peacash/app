@@ -53,6 +53,7 @@
         <Description v-for="(host, index) in endpoints" :key="(host, index)">
             <div class="flex gap-2">
                 <input
+                    @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
                     :value=host
@@ -63,30 +64,6 @@
                         shadow
                     "
                     type="text" placeholder="localhost:9332">
-                <input
-                    type="submit"
-                    value="Remove"
-                    @click="remove(index)"
-                    class="
-                        text-black
-                        rounded
-                        text-sm md:text-lg
-                        w-24 sm:w-32 md:w-40
-                        shadow
-                        cursor-pointer
-                    ">
-                <input
-                    type="submit"
-                    value="Select"
-                    @click="select(index)"
-                    class="
-                        text-black
-                        rounded
-                        text-sm md:text-lg
-                        w-24 sm:w-32 md:w-40
-                        shadow
-                        cursor-pointer
-                    ">
             </div>
         </Description>
     </div>
@@ -103,7 +80,7 @@ export default {
 	methods: {
         add(e) {
             e.preventDefault()
-            if (!this.endpoint_input) {
+            if (!this.endpoint_input || this.endpoints.includes(this.endpoint_input)) {
                 this.$refs.endpoint_input.focus()
                 return
             }
