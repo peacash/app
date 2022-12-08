@@ -33,8 +33,16 @@ export default {
 				this.$router.replace('/wallet')
 				return
 			}
-			if (["e", "ex", "exp", "expl", "explo", "explor", "explore", "explorer", "x", "node", "latest", "blocks", "staker", "stakers"].includes(search)) {
-				this.$router.replace('/explorer')
+			if (["setting", "settings"].includes(search)) {
+				this.$router.replace('/settings')
+				return
+			}
+			if (["latest", "recent", "blocks"].includes(search)) {
+				this.$router.replace('/latest')
+				return
+			}
+			if (["staker", "stakers"].includes(search)) {
+				this.$router.replace('/stakers')
 				return
 			}
 			if (search === parseInt(search).toString() && parseInt(search) !== NaN) {

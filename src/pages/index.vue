@@ -57,38 +57,6 @@
 				</TableRow>
 			</Table>
 		</Description>
-		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Stakers Queue</div>
-        </Description>
-		<Description>
-			<Table>
-				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
-					<TD1>#{{ index }}</TD1>	
-					<TD2 class="justify-center">
-						<router-link class="link" :to="('/address/' + public_key)">{{ public_key }}</router-link>
-					</TD2>	
-				</TableRow>
-			</Table>
-		</Description>
-		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Latest Blocks</div>
-        </Description>
-		<Description>
-			<Table>
-				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
-					<TD1>#{{ sync.height - index }}</TD1>	
-					<TD2 class="justify-center">
-						<router-link class="link" :to="('/block/' + hash)">{{ hash }}</router-link>
-					</TD2>	
-				</TableRow>
-			</Table>
-		</Description>
 	</div>
 </template>
 <script>
