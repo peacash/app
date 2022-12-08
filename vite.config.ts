@@ -23,8 +23,8 @@ export default defineConfig({
 			strategies: 'injectManifest',
 			registerType: 'autoUpdate',
 			manifest: {
-				theme_color: '#ffeeff',
-				background_color: '#ffeeff',
+				theme_color: '#ffffff',
+				background_color: '#ffffff',
 				name: 'Pea App',
 				short_name: 'Pea',
 				start_url: '.',

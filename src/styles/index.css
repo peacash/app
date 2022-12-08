@@ -16,7 +16,7 @@
 }
 @layer components {
 	body {
-		background-color: #fef;
+		background-color: #ffffff;
 	}
 	.custom-scroll {
 		scrollbar-width: thin;
