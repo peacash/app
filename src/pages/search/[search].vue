@@ -25,6 +25,10 @@ export default {
 				return
 			}
 			search = search.toLowerCase()
+			if (["h", "ho", "hom", "home"].includes(search)) {
+				this.$router.replace('/')
+				return
+			}
 			if (["w", "wa", "wal", "wall", "walle", "wallet"].includes(search)) {
 				this.$router.replace('/wallet')
 				return
