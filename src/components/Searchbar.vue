@@ -16,6 +16,7 @@
                     text-black
                     rounded
                     w-full
+                    shadow
                 "
                 type="text" placeholder="http://localhost:9332">
         </Description>
@@ -28,6 +29,7 @@
                     text-black
                     rounded
                     w-full
+                    shadow
                 "
                 type="text" placeholder="Search Blockchain, Transactions, Addresses, Blocks and Stakes">
         </Description>

@@ -9,7 +9,7 @@
 <template>
 	<div class="flex flex-col gap-2 my-2 w-full">
 		<Description>
-			<Table :bar="true" v-if="balance !== null && balance_staked !== null">
+			<Table v-if="balance !== null && balance_staked !== null">
 				<TableRow class="text-xl justify-center pb-2">Address</TableRow>
 				<TableRow v-if="(address !== null)">
 					<TD1 class="w-60">Public&nbsp;key</TD1>

@@ -1,20 +1,15 @@
 <style scoped>
     table {
         border-collapse: collapse;
+        margin: 0 !important;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 600;
     }
 </style>
 <template>
-    <div class="bg-white p-2 rounded">
-        <Bar v-if="bar" />
+    <div class="p-2 rounded shadow">
         <table>
             <slot></slot>
         </table>
     </div>
 </template>
-<script>
-export default {
-    props: {
-		bar: Boolean
-	}
-}
-</script>
