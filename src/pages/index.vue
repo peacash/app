@@ -7,13 +7,17 @@
 	}
 </style>
 <template>
-	<div class="flex gap-2 justify-center" style="position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);">
-		<router-link class="link" to="/explorer">
-			<Button>Explorer</Button>
-		</router-link>
-		<router-link class="link" to="/wallet">
-			<Button>Wallet</Button>
-		</router-link>
+	<div class="flex flex-col gap-2 justify-center">
+		<Description>
+			<div class="flex justify-center gap-2 my-40">
+				<router-link class="link" to="/explorer">
+					<Button class="text-lg px-10 py-5">Explorer</Button>
+				</router-link>
+				<router-link class="link" to="/wallet">
+					<Button class="text-lg px-10 py-5">Wallet</Button>
+				</router-link>
+			</div>
+		</Description>
 	</div>
 </template>
 <script>
