@@ -7,10 +7,10 @@
 	}
 </style>
 <template>
-	<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
+	<div v-if="((sync === null || info === null || dynamic === null || trusted === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive :endpoint=endpoint />
 	</div>
-	<div v-if="(dynamic && trusted && sync)" class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(sync !== null && info !== null && dynamic !== null && trusted !== null)" class="flex flex-col gap-10 my-10 w-full">
 		<Description>
             <div class="
                 flex justify-center
