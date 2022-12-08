@@ -1,12 +1,6 @@
 <template>
     <div class="flex flex-col gap-10 my-10 w-full">
         <Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
-        </Description>
-        <Description>
             <form @submit="add" class="flex gap-2 md:gap-10">
                 <input
                     v-model=endpoint_input
@@ -30,6 +24,12 @@
                         cursor-pointer
                     ">
             </form>
+        </Description>
+        <Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-10">
