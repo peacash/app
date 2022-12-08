@@ -55,11 +55,13 @@ export default {
 			}, 3000);
 		},
 		fetchData() {
+			let endpoint = window.localStorage.getItem("endpoint")
+			if (!endpoint) return
 			if (!this.address) return
-			fetch(window.localStorage.getItem("endpoint") + "/balance/" + this.address).then(res => res.text()).then(data => {
+			fetch(endpoint + "/balance/" + this.address).then(res => res.text()).then(data => {
 				this.balance = data
 			})
-			fetch(window.localStorage.getItem("endpoint") + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
+			fetch(endpoint + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
 				this.balance_staked = data
 			})
 		},

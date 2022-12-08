@@ -112,17 +112,18 @@ export default {
 			return string.slice(0, 12) + "..." + string.slice(-8)
 		},
 		fetchData() {
-			this.endpoint = window.localStorage.getItem("endpoint");
-			fetch(this.endpoint + "/dynamic").then(res => res.json()).then(data => {
+			let endpoint = window.localStorage.getItem("endpoint");
+			if (!endpoint) return
+			fetch(endpoint + "/dynamic").then(res => res.json()).then(data => {
 				this.dynamic = data
 			})
-			fetch(this.endpoint + "/trusted").then(res => res.json()).then(data => {
+			fetch(endpoint + "/trusted").then(res => res.json()).then(data => {
 				this.trusted = data
 			})
-			fetch(this.endpoint + "/sync").then(res => res.json()).then(data => {
+			fetch(endpoint + "/sync").then(res => res.json()).then(data => {
 				this.sync = data
 			})
-			fetch(this.endpoint + "/info").then(res => res.json()).then(data => {
+			fetch(endpoint + "/info").then(res => res.json()).then(data => {
 				this.info = data
 			})
 		}

@@ -8,7 +8,7 @@
 </style>
 <template>
     <div class="flex flex-col gap-2 w-full">
-        <Description v-if="endpoint">
+        <Description>
             <label for="selected" class="text-sm ml-1">Selected</label>
             <input
                 disabled
