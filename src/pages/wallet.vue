@@ -38,7 +38,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
-			<div class="flex flex-col gap-10 mx-auto">
+			<div class="flex flex-col gap-2 sm:gap-10 mx-auto">
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
                     rounded
@@ -67,7 +67,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'stake' && secret)" >
-			<div class="flex flex-col gap-10 mx-auto">
+			<div class="flex flex-col gap-2 sm:gap-10 mx-auto">
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
@@ -80,7 +80,7 @@
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
-				<div class="flex justify-center gap-10">
+				<div class="flex justify-center gap-2 sm:gap-10">
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
 					<Button @click="stake_send()">Send</Button>
 				</div>
