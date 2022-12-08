@@ -9,6 +9,12 @@
 <template>
 	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">Transaction</div>
+        </Description>
+		<Description>
 			<Table>
 				<TableRow v-if="transaction">
 					<TD1 class="w-60">Hash</TD1>

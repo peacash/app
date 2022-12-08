@@ -4,8 +4,6 @@
             <div class="
                 flex justify-center
                 text-black
-                rounded
-                w-full
             ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
         </Description>
         <Description class="mb-8">

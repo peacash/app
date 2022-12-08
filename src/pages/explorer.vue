@@ -9,6 +9,12 @@
 <template>
 	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">General information about Node</div>
+        </Description>
+		<Description>
 			<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
 				<Unresponsive :endpoint=endpoint />
 			</div>
@@ -51,6 +57,12 @@
 			</Table>
 		</Description>
 		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">Stakers Queue</div>
+        </Description>
+		<Description>
 			<Table v-if="dynamic">
 				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>	
@@ -60,6 +72,12 @@
 				</TableRow>
 			</Table>
 		</Description>
+		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">Most recent Blocks</div>
+        </Description>
 		<Description>
 			<Table v-if="(dynamic && trusted && sync)">
 				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
