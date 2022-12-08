@@ -31,6 +31,7 @@
                     rounded
                     w-full
                 ">
+				<vue-qr class="w-80 mx-auto" :dotScale=.9 backgroundColor="#00000000" colorLight="#00000000" :text="'http://app.pea.cash/#/wallet?output=' + public" :size=512 :correctLevel=0></vue-qr>
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
@@ -95,6 +96,7 @@
 	</div>
 </template>
 <script>
+import VueQr from 'vue-qr/src/packages/vue-qr.vue'
 import util from "../util.ts"
 export default {
 	data() {
@@ -119,6 +121,7 @@ export default {
 		}
 		this.load()
     },
+	components: {VueQr},
 	methods: {
 		load() {
 			this.secret = window.localStorage.getItem("secret")
