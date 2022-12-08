@@ -1,4 +1,7 @@
 <style scoped>
+    input {
+        background-color: #ffffff;
+    }
     input:hover {
         background-color: #f9f9f9;
     }
