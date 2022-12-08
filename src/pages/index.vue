@@ -7,72 +7,13 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
-		<Description>
-			<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
-				<Unresponsive :api="api" />
-			</div>
-			<Table v-if="(sync && info)">
-				<TableRow class="text-xl justify-center pb-2">General information about Node</TableRow>
-				<TableRow v-if="sync">
-					<TD1 class="w-60">Synchronization</TD1>	
-					<TD2>{{ sync.sync }}</TD2>	
-				</TableRow>
-				<TableRow v-if="sync">
-					<TD1 class="w-60">Last&nbsp;block&nbsp;seen</TD1>	
-					<TD2>{{ sync.last }}</TD2>	
-				</TableRow>
-				<TableRow v-if="sync">
-					<TD1 class="w-60">Height</TD1>	
-					<TD2>{{ sync.height }}</TD2>	
-				</TableRow>
-				<TableRow v-if="info">
-					<TD1 class="w-60">Tree&nbsp;size</TD1>	
-					<TD2>{{ info.tree_size }}</TD2>	
-				</TableRow>
-				<TableRow v-if="info">
-					<TD1 class="w-60">Public&nbsp;key</TD1>	
-					<TD2 v-if="shorten_public_key" @click="(shorten_public_key = false)">{{ shorten(info.public_key) }}</TD2>	
-					<TD2 v-else>
-						<router-link class="link" :to="'/address/' + info.public_key">{{ info.public_key }}</router-link>
-					</TD2>	
-				</TableRow>
-				<TableRow v-if="info">
-					<TD1 class="w-60">Time</TD1>	
-					<TD2>{{ info.time }}</TD2>	
-				</TableRow>
-				<TableRow v-if="info">
-					<TD1 class="w-60">Uptime</TD1>	
-					<TD2>{{ info.uptime }}</TD2>	
-				</TableRow>
-				<TableRow v-if="info">
-					<TD1 class="w-60">Tick</TD1>	
-					<TD2>{{ info.lag }} ms</TD2>	
-				</TableRow>
-			</Table>
-		</Description>
-		<Description>
-			<Table v-if="dynamic">
-				<TableRow class="text-xl justify-center pb-2">Stakers Queue</TableRow>
-				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
-					<TD1>#{{ index }}</TD1>	
-					<TD2 class="justify-center">
-						<router-link class="link" :to="('/address/' + public_key)">{{ public_key }}</router-link>
-					</TD2>	
-				</TableRow>
-			</Table>
-		</Description>
-		<Description>
-			<Table v-if="(dynamic && trusted && sync)">
-				<TableRow class="text-xl justify-center pb-2">Latest Blocks</TableRow>
-				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
-					<TD1>#{{ sync.height - index }}</TD1>	
-					<TD2 class="justify-center">
-						<router-link class="link" :to="('/block/' + hash)">{{ hash }}</router-link>
-					</TD2>	
-				</TableRow>
-			</Table>
-		</Description>
+	<div class="flex gap-2 justify-center" style="position: absolute; top: 50%; left: 50%; transform:translate(-50%, -50%);">
+		<router-link class="link" to="/explorer">
+			<Button>Explorer</Button>
+		</router-link>
+		<router-link class="link" to="/wallet">
+			<Button>Wallet</Button>
+		</router-link>
 	</div>
 </template>
 <script>
