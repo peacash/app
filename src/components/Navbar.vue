@@ -69,12 +69,6 @@
 							text: "Wallet",
 							to: "/wallet"
 						}
-					],
-					href: [
-						{
-							text: "Pea",
-							href: "https://pea.cash"
-						}
 					]
 				}
 			}
