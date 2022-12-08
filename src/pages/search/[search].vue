@@ -25,6 +25,14 @@ export default {
 				return
 			}
 			search = search.toLowerCase()
+			if (["w", "wa", "wal", "wall", "walle", "wallet"].includes(search)) {
+				this.$router.replace('/wallet')
+				return
+			}
+			if (["e", "ex", "exp", "expl", "explo", "explor", "explore", "explorer", "x"].includes(search)) {
+				this.$router.replace('/explorer')
+				return
+			}
 			if (search === parseInt(search).toString() && parseInt(search) !== NaN) {
 				fetch(endpoint + "/hash/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/block/' + data)
