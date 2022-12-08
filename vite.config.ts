@@ -30,8 +30,7 @@ export default defineConfig({
 				short_name: 'Pea',
 				start_url: '.',
 				display: 'standalone',
-				description:
-					"Pea.",
+				description: "The Pea Project",
 				icons: [
 					{
 						src: '/android-chrome-192x192.png',
