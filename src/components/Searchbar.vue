@@ -1,11 +1,3 @@
-<style scoped>
-    input:hover {
-        background-color: #efe;
-    }
-    input {
-        border: none;
-    }
-</style>
 <template>
     <div class="flex flex-col gap-2 my-2 w-full">
         <Description>
@@ -17,7 +9,7 @@
                     text-black
                     rounded
                     w-full
-                    shadow
+                    ring-1 ring-black ring-opacity-20
                 "
                 type="text" placeholder="Search Blockchain, Transactions, Addresses, Blocks and Stakes">
         </Description>

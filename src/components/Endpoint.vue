@@ -1,14 +1,3 @@
-<style scoped>
-    input {
-        background-color: #ffffff;
-    }
-    input:hover {
-        background-color: #f9f9f9;
-    }
-    input {
-        border: none;
-    }
-</style>
 <template>
     <div class="flex flex-col gap-2 w-full">
         <Description>
@@ -27,8 +16,8 @@
                     class="
                         text-black
                         rounded
+                        ring-1 ring-black ring-opacity-20
                         w-full
-                        shadow
                     "
                     type="text" placeholder="http://0.0.0.0:9332">
                 <input
@@ -39,7 +28,7 @@
                         rounded
                         text-sm md:text-lg
                         w-24 sm:w-32 md:w-40
-                        shadow
+                        ring-1 ring-black ring-opacity-20
                         cursor-pointer
                     ">
             </form>
@@ -55,7 +44,7 @@
                         text-black
                         rounded
                         w-full
-                        shadow
+                        ring-1 ring-black ring-opacity-20
                     "
                     type="text" placeholder="localhost:9332">
             </div>

@@ -43,4 +43,13 @@
 	.grid-layout-container {
 		grid-template-rows: 1fr auto;
 	}
+	input {
+        background-color: #ffffff;
+    }
+    input:hover {
+        background-color: #f9f9f9;
+    }
+    input {
+        border: none;
+    }
 }
