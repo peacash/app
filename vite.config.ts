@@ -28,8 +28,8 @@ export default defineConfig({
 				background_color: '#ffffff',
 				name: 'Pea App',
 				short_name: 'Pea',
-				start_url: '.',
-				scope: '.',
+				start_url: 'https://app.pea.cash/',
+				scope: 'https://app.pea.cash/',
 				display: 'standalone',
 				description: "The Pea Project",
 				icons: [
