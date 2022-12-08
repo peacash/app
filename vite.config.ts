@@ -27,7 +27,7 @@ export default defineConfig({
 				background_color: '#ffffff',
 				name: 'Pea App',
 				short_name: 'Pea',
-				start_url: '.',
+				start_url: '/',
 				display: 'standalone',
 				description:
 					"Pea.",
