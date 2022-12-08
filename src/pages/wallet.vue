@@ -16,7 +16,7 @@
 	<Address v-if="public" :address="public" />
 	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-			<div class="flex gap-2 md:gap-10 justify-center my-10">
+			<div class="flex gap-2 md:gap-10 justify-center">
 				<Button @click="view = 'receive'">Receive</Button>
 				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
@@ -24,11 +24,17 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'receive' && public)" >
-			<div class="flex flex-col gap-10 mx-auto">
+			<div class="flex flex-col mx-auto">
+				<input disabled v-model="public" type="text" placeholder="output address" class="
+                    text-black
+                    rounded
+					ring-1 ring-black ring-opacity-20
+                    w-full
+                ">
 				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
 					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;" class="p-5 w-full" />
 				</div>
-				<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 mx-auto" style="cursor: pointer;" />
+				<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
@@ -36,22 +42,26 @@
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<input v-model="transaction_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<input v-model="transaction_fee" type="text" placeholder="fee" class="
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<Button @click="transaction_send()" class="mx-auto">Send</Button>
 				<textarea disabled v-if="transaction" v-model="transaction" rows="2" class="
 					text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
 				"></textarea>
 			</div>
@@ -61,11 +71,13 @@
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<input v-model="stake_fee" type="text" placeholder="fee" class="
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<div class="flex justify-center gap-10">
@@ -75,6 +87,7 @@
 				<textarea disabled v-if="stake" v-model="stake" rows="2" class="
 					text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
 				"></textarea>
 			</div>
@@ -85,6 +98,7 @@
 					secret
                     text-black
                     rounded
+					ring-1 ring-black ring-opacity-20
                     w-full
                 ">
 				<Button class="mx-auto" v-if="secret" @click="remove()">Remove</Button>
