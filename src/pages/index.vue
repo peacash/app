@@ -7,6 +7,7 @@
 	}
 </style>
 <template>
+	<Endpoint />
 	<div class="flex flex-col gap-2 justify-center">
 		<Description>
 			<div class="flex justify-center gap-2 my-40">
