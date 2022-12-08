@@ -32,7 +32,7 @@
             </form>
         </Description>
         <Description>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 sm:gap-10">
                 <input v-for="(host, index) in endpoints" :key="(host, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
