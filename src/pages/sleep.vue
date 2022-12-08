@@ -6,10 +6,8 @@
         height: 100%;
         width: 100%;
         z-index: 100;
-        animation: div 1s;
         user-select: none;
-        background-color: #ffffff;
-        visibility: hidden;
+        background-color: #000000;
     }
     img {
         position: absolute;
@@ -17,24 +15,14 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
-        opacity: 0;
-        animation: img 750ms 250ms;
         max-width: 60rem;
-    }
-    @keyframes div {
-        0% {
-            opacity: 1;
-            visibility: visible;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
+        animation: img 10s infinite ease-in-out;
     }
     @keyframes img {
         0% {
+            opacity: 0;
+        }
+        10% {
             opacity: 0;
         }
         50% {
@@ -53,3 +41,10 @@
         <img class="p-10" src="/peacash-green.svg" alt="">
     </div>
 </template>
+<script>
+export default {
+    mounted() {
+        document.title = "Sleep - Pea"
+    }
+}
+</script>
