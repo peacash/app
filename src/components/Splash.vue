@@ -7,6 +7,7 @@
         animation: a 2.5s;
         visibility: hidden;
         user-select: none;
+        background-color: #fef;
     }
     img {
         width: 100%;
@@ -27,7 +28,7 @@
     }
 </style>
 <template>
-    <div class="flex jusfity-center bg-white">
+    <div class="flex jusfity-center">
         <img class="p-10 mx-auto" src="/peacash.svg" alt="">
     </div>
 </template>
