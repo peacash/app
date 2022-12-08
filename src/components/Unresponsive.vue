@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">Endpoint <i>{{ endpoint }}</i> seems unresponsive.</div>
+    <div class="text-center" style="color: #f00;">Endpoint <i>{{ endpoint }}</i> seems unresponsive.</div>
     <div v-if="https" class="text-center">
         Try the
         <a :href="'http://' + host">http version</a>
