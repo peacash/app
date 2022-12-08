@@ -16,6 +16,7 @@ export default defineConfig({
 	},
 	plugins: [
 		Vue(),
+		Pages(),
 		VitePWA({
 			srcDir: 'src',
 			filename: 'sw.ts',
@@ -47,7 +48,6 @@ export default defineConfig({
 				]
 			}
 		}),
-		Pages(),
 		ViteComponents({
 			customComponentResolvers: [
 				ViteIconsResolver({
