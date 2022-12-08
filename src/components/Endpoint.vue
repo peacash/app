@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-10 w-full">
+    <div class="flex flex-col gap-10 my-10 w-full">
         <Description>
             <div class="
                 flex justify-center

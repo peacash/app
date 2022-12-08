@@ -66,12 +66,12 @@
 							to: "/"
 						},
 						{
-							text: "Explorer",
-							to: "/explorer"
-						},
-						{
 							text: "Wallet",
 							to: "/wallet"
+						},
+						{
+							text: "Settings",
+							to: "/settings"
 						}
 					]
 				}
