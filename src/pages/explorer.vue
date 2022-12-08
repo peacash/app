@@ -7,13 +7,12 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
 			<div v-if="(!sync && !info && !dynamic && !trusted && timeout)" class="flex flex-col justify-center mx-auto my-4">
 				<Unresponsive :endpoint=endpoint />
 			</div>
 			<Table v-if="(sync && info)">
-				<TableRow class="text-xl justify-center pb-2">General information about Node</TableRow>
 				<TableRow v-if="sync">
 					<TD1 class="w-60">Synchronization</TD1>	
 					<TD2>{{ sync.sync }}</TD2>	
@@ -53,7 +52,6 @@
 		</Description>
 		<Description>
 			<Table v-if="dynamic">
-				<TableRow class="text-xl justify-center pb-2">Stakers Queue</TableRow>
 				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>	
 					<TD2 class="justify-center">
@@ -64,7 +62,6 @@
 		</Description>
 		<Description>
 			<Table v-if="(dynamic && trusted && sync)">
-				<TableRow class="text-xl justify-center pb-2">Latest Blocks</TableRow>
 				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
 					<TD1>#{{ sync.height - index }}</TD1>	
 					<TD2 class="justify-center">

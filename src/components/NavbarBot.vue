@@ -6,7 +6,7 @@
     }
 </style>
 <template>
-    <div class="flex justify-center w-full p-2 gap-2 sm:hidden">
+    <div class="flex justify-center w-full p-2 gap-10 sm:hidden">
         <router-link class="w-full" to="/">
             <Button class="h-32 w-full">Home</Button>
         </router-link>

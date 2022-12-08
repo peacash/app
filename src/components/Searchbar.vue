@@ -1,19 +1,17 @@
 <template>
-    <div class="flex flex-col gap-2 my-2 w-full">
-        <Description>
-            <input
-                v-model=search_value
-                ref="search"
-                v-on:input="search"
-                class="
-                    text-black
-                    rounded
-                    w-full
-                    ring-1 ring-black ring-opacity-20
-                "
-                type="text" placeholder="Search Blockchain, Transactions, Addresses, Blocks and Stakes">
-        </Description>
-    </div>
+    <Description class="my-10">
+        <input
+            v-model=search_value
+            ref="search"
+            v-on:input="search"
+            class="
+                text-black
+                rounded
+                w-full
+                ring-1 ring-black ring-opacity-20
+            "
+            type="text" placeholder="Search Blockchain, Transactions, Addresses, Blocks and Stakes">
+    </Description>
 </template>
 <script>
 export default {

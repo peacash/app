@@ -7,10 +7,9 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
 			<Table>
-				<TableRow class="text-xl justify-center pb-2">Block</TableRow>
 				<TableRow v-if="(height !== null)">
 					<TD1 class="w-60">Height</TD1>
 					<TD2>{{ height }}</TD2>
@@ -56,7 +55,6 @@
 		</Description>
 		<Description>
 			<Table v-if="block">
-				<TableRow class="text-xl justify-center pb-2">Transactions</TableRow>
 				<div v-if="!block.transactions.length" class="text-center italic">This block does not include any transactions.</div>
 				<TableRow v-for="(hash, index) in block.transactions" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>
@@ -68,7 +66,6 @@
 		</Description>
 		<Description>
 			<Table v-if="block">
-				<TableRow class="text-xl justify-center pb-2">Stakes</TableRow>
 				<div v-if="!block.stakes.length" class="text-center italic">This block does not include any stakes.</div>
 				<TableRow v-for="(hash, index) in block.stakes" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>

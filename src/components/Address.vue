@@ -7,10 +7,9 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
 			<Table v-if="balance !== null && balance_staked !== null">
-				<TableRow class="text-xl justify-center pb-2">Address</TableRow>
 				<TableRow v-if="(address !== null)">
 					<TD1 class="w-60">Public&nbsp;key</TD1>
 					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(address) }}</TD2>

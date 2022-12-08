@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-2 w-full">
+    <div class="flex flex-col gap-10 w-full">
         <Description>
             <div class="
                 flex justify-center
@@ -9,7 +9,7 @@
             ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
         </Description>
         <Description class="mb-8">
-            <form @submit="add" class="flex gap-2">
+            <form @submit="add" class="flex gap-10">
                 <input
                     v-model=endpoint_input
                     ref="endpoint_input"
@@ -34,7 +34,7 @@
             </form>
         </Description>
         <Description v-for="(host, index) in endpoints" :key="(host, index)">
-            <div class="flex gap-2">
+            <div class="flex gap-10">
                 <input
                     @click="select(index)"
                     @keydown="select_enter($event, index)"

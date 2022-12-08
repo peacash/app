@@ -14,9 +14,9 @@
 </style>
 <template>
 	<Address v-if="public" :address="public" />
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
-			<div class="flex gap-2 justify-center my-10">
+			<div class="flex gap-10 justify-center my-10">
 				<Button @click="view = 'receive'">Receive</Button>
 				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
@@ -24,7 +24,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'receive' && public)" >
-			<div class="flex flex-col gap-2 mx-auto">
+			<div class="flex flex-col gap-10 mx-auto">
 				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
 					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;" class="p-5 w-full" />
 				</div>
@@ -32,7 +32,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
-			<div class="flex flex-col gap-2 mx-auto">
+			<div class="flex flex-col gap-10 mx-auto">
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
                     rounded
@@ -57,7 +57,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'stake' && secret)" >
-			<div class="flex flex-col gap-2 mx-auto">
+			<div class="flex flex-col gap-10 mx-auto">
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
@@ -68,7 +68,7 @@
                     rounded
                     w-full
                 ">
-				<div class="flex justify-center gap-2">
+				<div class="flex justify-center gap-10">
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
 					<Button @click="stake_send()">Send</Button>
 				</div>
@@ -80,7 +80,7 @@
 			</div>
 		</Description>
 		<Description v-else-if="(view == 'secret' && secret)" >
-			<div class="flex flex-col gap-2">
+			<div class="flex flex-col gap-10">
 				<input disabled v-model="secret" type="text" class="
 					secret
                     text-black

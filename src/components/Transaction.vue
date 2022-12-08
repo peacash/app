@@ -7,10 +7,9 @@
 	}
 </style>
 <template>
-	<div class="flex flex-col gap-2 my-2 w-full">
+	<div class="flex flex-col gap-10 my-10 w-full">
 		<Description>
 			<Table>
-				<TableRow class="text-xl justify-center pb-2">Transaction</TableRow>
 				<TableRow v-if="transaction">
 					<TD1 class="w-60">Hash</TD1>
 					<TD2 v-if="shorten_hash" @click="(shorten_hash = false)">{{ shorten(transaction.hash) }}</TD2>
