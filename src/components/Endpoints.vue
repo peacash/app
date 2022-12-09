@@ -1,10 +1,19 @@
 <style scoped>
+    .green.blue {
+        background-color: #eff;
+    }
+    .red.blue {
+        background-color: #fef;
+    }
 	.green {
 		background-color: #efe;
 	}
 	.red {
 		background-color: #fee;
 	}
+    .blue {
+        background-color: #eef;
+    }
 </style>
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
@@ -41,18 +50,18 @@
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-                <input v-for="(url, index) in urls" :key="(url, index)"
+                <input v-for="(u, index) in urls" :key="(u, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
-                    :value=url
+                    :value=u
                     class="
                         text-black
                         rounded
                         w-full
                         sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
-                    :class="map.get(url)?.sync ? 'green' : 'red'"
+                    :class="(map.get(u)?.sync ? 'green' : 'red') + ' ' + (u === url ? 'blue' : '')"
                     type="text">
             </div>
         </Description>
