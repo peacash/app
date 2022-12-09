@@ -1,5 +1,5 @@
 <style scoped>
-    tr:nth-child(2n) {
+    tr:nth-child(odd) {
         background-color: #efe;
     }
 	.link {

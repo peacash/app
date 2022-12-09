@@ -1,8 +1,8 @@
 <style scoped>
-    tr:nth-child(4n) {
+    tr:nth-child(4n + 1) {
         background-color: #fef;
     }
-	tr:nth-child(4n + 2) {
+	tr:nth-child(4n + 3) {
         background-color: #ffe;
     }
 	.link {
