@@ -68,6 +68,7 @@
 				gap-2 md:gap-10
             ">
 				<router-link class="link" to="/stakers">/stakers</router-link>
+				<router-link class="link" to="/compare">/compare</router-link>
 				<router-link class="link" to="/latest">/latest</router-link>
 			</div>
         </Description>
