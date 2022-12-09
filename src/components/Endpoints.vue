@@ -50,19 +50,27 @@
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-                <input v-for="(u, index) in urls" :key="(u, index)"
-                    @click="select(index)"
-                    @keydown="select_enter($event, index)"
-                    @input="update($event, index)"
-                    :value=u
-                    class="
-                        text-black
-                        rounded
-                        w-full
-                        sm:ring-1 sm:ring-black sm:ring-opacity-20
-                    "
-                    :class="(map.get(u)?.sync ? 'green' : 'red') + ' ' + (u === url ? 'blue' : '')"
-                    type="text">
+                <div v-for="(u, index) in urls" :key="(u, index)">
+                    <input
+                        @click="select(index)"
+                        @keydown="select_enter($event, index)"
+                        @input="update($event, index)"
+                        :value=u
+                        :name=u
+                        class="
+                            text-black
+                            rounded
+                            w-full
+                            sm:ring-1 sm:ring-black sm:ring-opacity-20
+                        "
+                        :class="(map.get(u)?.sync ? 'green' : 'red') + ' ' + (u === url ? 'blue' : '')"
+                        type="text">
+                    <label :for=u class="
+                        text-xs lg:text-sm
+                        h-1 lg:h-2
+                        ml-1
+                    ">{{ map.get(u) }}</label>
+                </div>
             </div>
         </Description>
     </div>
@@ -136,7 +144,7 @@ export default {
 				fetch(url + "/sync").then(res => res.json()).then(data => {
                     this.map.set(url, data)
 				}).catch(err => {
-                    this.map.set(url, null)
+                    this.map.set(url, err.toString())
 				})
 			}
 		}
