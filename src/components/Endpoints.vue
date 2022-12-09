@@ -61,9 +61,9 @@
                             text-black
                             rounded
                             w-full
-                            sm:ring-1 sm:ring-black sm:ring-opacity-20
+                            ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                         "
-                        :class="(map.get(u)?.sync ? 'green' : 'red') + ' ' + (u === url ? 'blue' : '')"
+                        :class="(map.get(u)?.sync ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
                         type="text">
                     <label :for=u class="
                         text-xs lg:text-sm
