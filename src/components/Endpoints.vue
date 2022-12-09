@@ -1,10 +1,18 @@
+<style scoped>
+	.green {
+		background-color: #efe;
+	}
+	.red {
+		background-color: #fee;
+	}
+</style>
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
         <Description>
             <form @submit="add" class="flex gap-2 md:gap-2 md:gap-10">
                 <input
-                    v-model=endpoint_input
-                    ref="endpoint_input"
+                    v-model=url_input
+                    ref="url_input"
                     class="
                         text-black
                         rounded
@@ -29,21 +37,22 @@
             <div class="
                 flex justify-center
                 text-black
-            ">{{ endpoint ? "Now using - " + endpoint : "Configure an API endpoint to use." }}</div>
+            ">{{ url ? "Now using - " + url : "Configure an API endpoint to use." }}</div>
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-                <input v-for="(host, index) in endpoints" :key="(host, index)"
+                <input v-for="(test, index) in tests" :key="(test, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
-                    :value=host
+                    :value=test.url
                     class="
                         text-black
                         rounded
                         w-full
                         sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
+                    :class="test?.sync ? 'green' : 'red'"
                     type="text">
             </div>
         </Description>
@@ -53,62 +62,101 @@
 export default {
 	data() {
 		return {
-			endpoint_input: "",
-			endpoint: localStorage.getItem("endpoint"),
-            endpoints: []
+			url_input: "",
+			url: "",
+            urls: [],
+            tests: []
 		}
 	},
 	methods: {
         add(e) {
             e.preventDefault()
-            if (!this.endpoint_input || this.endpoints.includes(this.endpoint_input)) {
-                this.$refs.endpoint_input.focus()
+            let url = this.url_input
+            if (!url || this.urls.includes(url)) {
+                this.$refs.url_input.focus()
                 return
             }
-            this.endpoint = this.endpoint_input
-            this.endpoints.unshift(this.endpoint)
-            localStorage.setItem('endpoint', this.endpoint_input)
-            localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
-            this.endpoint_input = ""
+            this.url = url
+            this.urls.unshift(url)
+            localStorage.setItem('url', url)
+            localStorage.setItem('urls', JSON.stringify(this.urls))
+            this.url_input = ""
+            this.tests.unshift({
+                url,
+                sync: null
+            })
         },
         remove(index) {
-            let endpoint = this.endpoints[index]
-            this.endpoints.splice(index, 1)
-            localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
-            if (this.endpoint == endpoint) {
-                this.endpoint = null
-                localStorage.removeItem('endpoint')
+            let url = this.urls[index]
+            this.urls.splice(index, 1)
+            this.tests.splice(index, 1)
+            localStorage.setItem('urls', JSON.stringify(this.urls))
+            if (this.url == url) {
+                this.url = null
+                localStorage.removeItem('url')
             }
         },
         select(index) {
-            let endpoint = this.endpoints[index]
-            localStorage.setItem('endpoint', endpoint)
-            this.endpoint = endpoint
+            let url = this.urls[index]
+            localStorage.setItem('url', url)
+            this.url = url
         },
         select_enter(e, index) {
             if (e.key != "Enter") {
                 return
             }
-            let endpoint = this.endpoints[index]
-            localStorage.setItem('endpoint', endpoint)
-            this.endpoint = endpoint
+            this.select(index)
         },
         update(e, index) {
             if (!e.target.value) {
                 this.remove(index)
-                this.$refs.endpoint_input.focus()
+                this.$refs.url_input.focus()
                 return
             }
-            this.endpoints[index] = e.target.value
-            localStorage.setItem('endpoints', JSON.stringify(this.endpoints))
-        }
+            this.urls[index] = e.target.value
+            localStorage.setItem('urls', JSON.stringify(this.urls))
+        },
+		loop() {
+			this.fetchData();
+			this.interval = setInterval(() => {
+				this.fetchData()
+			}, 3000);
+		},
+		fetchData() {
+			let urls = JSON.parse(window.localStorage.getItem("urls"))
+			if (!urls?.length) return
+			for (let i = 0; i < urls.length; i++) {
+				let url = urls[i]
+                if (this.tests[i]?.sync == null) {
+					this.tests[i] = {
+						url,
+						sync: null
+					}
+                }
+				fetch(url + "/sync").then(res => res.json()).then(data => {
+					this.tests[i] = {
+						url,
+						sync: data
+					}
+				}).catch(err => {
+					this.tests[i] = {
+						url,
+						sync: null
+					}
+				})
+			}
+		}
 	},
 	mounted() {
-        console.log(this.endpoint)
-        let endpoints = JSON.parse(localStorage.getItem("endpoints"))
-        if (endpoints?.length) {
-            this.endpoints = endpoints
+        this.url = localStorage.getItem("url")
+        let urls = JSON.parse(localStorage.getItem("urls"))
+        if (urls?.length) {
+            this.urls = urls
         }
-	}
+		this.loop();
+    },
+	unmounted() {
+		clearInterval(this.interval)
+	},
 }
 </script>
