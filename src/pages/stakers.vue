@@ -1,4 +1,10 @@
 <style scoped>
+    tr:nth-child(4n) {
+        background-color: #fef;
+    }
+	tr:nth-child(4n + 2) {
+        background-color: #ffe;
+    }
 	.link {
 		text-decoration: none;
 	}

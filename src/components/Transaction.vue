@@ -1,4 +1,7 @@
 <style scoped>
+    tr:nth-child(2n) {
+        background-color: #efe;
+    }
 	.link {
 		text-decoration: none;
 	}
