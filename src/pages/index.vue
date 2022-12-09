@@ -29,6 +29,14 @@
 					<TD2>{{ sync.height }}</TD2>	
 				</TableRow>
 				<TableRow>
+					<TD1 class="w-60">Index</TD1>	
+					<TD2>{{ sync.index }}</TD2>	
+				</TableRow>
+				<TableRow>
+					<TD1 class="w-60">Gossipsub peers</TD1>	
+					<TD2>{{ sync.peers }}</TD2>	
+				</TableRow>
+				<TableRow>
 					<TD1 class="w-60">Tree&nbsp;size</TD1>	
 					<TD2>{{ info.tree_size }}</TD2>	
 				</TableRow>
