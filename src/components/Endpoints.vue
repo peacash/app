@@ -41,7 +41,7 @@
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-                <input v-for="(url, index) in urls" :key="(test, index)"
+                <input v-for="(url, index) in urls" :key="(url, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
@@ -52,7 +52,7 @@
                         w-full
                         sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
-                    :class="tests.find(e => e.url === url)?.sync ? 'green' : 'red'"
+                    :class="map.get(url)?.sync ? 'green' : 'red'"
                     type="text">
             </div>
         </Description>
@@ -65,7 +65,7 @@ export default {
 			url_input: "",
 			url: "",
             urls: [],
-            tests: []
+            map: new Map()
 		}
 	},
 	methods: {
@@ -120,24 +120,14 @@ export default {
 		fetchData() {
 			let urls = JSON.parse(window.localStorage.getItem("urls"))
 			if (!urls?.length) return
-			for (let i = 0; i < urls.length; i++) {
-				let url = urls[i]
-                if (this.tests[i]?.sync == null) {
-					this.tests[i] = {
-						url,
-						sync: null
-					}
+			for (let url of urls) {
+                if (!this.map.has(url)) {
+                    this.map.set(url, null)
                 }
 				fetch(url + "/sync").then(res => res.json()).then(data => {
-					this.tests[i] = {
-						url,
-						sync: data
-					}
+                    this.map.set(url, data)
 				}).catch(err => {
-					this.tests[i] = {
-						url,
-						sync: null
-					}
+                    this.map.set(url, null)
 				})
 			}
 		}
