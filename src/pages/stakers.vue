@@ -10,13 +10,7 @@
 	<div v-if="(dynamic === null && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="dynamic !== null" class="flex flex-col gap-10 my-10 w-full">
-		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Stakers Queue</div>
-        </Description>
+	<div v-if="dynamic !== null" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
 			<Table>
 				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">

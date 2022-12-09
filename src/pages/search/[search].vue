@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col gap-10 my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description class="text-center">
 			<h2 style="font-weight: 300;">Search</h2>
 			<h4 class="uppercase pb-12" style="font-weight: 600;">{{ $route.params.search }}</h4>

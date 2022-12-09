@@ -10,7 +10,7 @@
 	<div v-if="((sync === null || info === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="(sync !== null && info !== null)" class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(sync !== null && info !== null)" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
 			<Table>
 				<TableRow>
@@ -54,7 +54,7 @@
             <div class="
                 flex justify-center
                 text-black
-				gap-10
+				gap-2 md:gap-10
             ">
 				<router-link class="link" to="/stakers">/stakers</router-link>
 				<router-link class="link" to="/latest">/latest</router-link>

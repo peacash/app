@@ -10,7 +10,7 @@
 	<div v-if="((balance === null || balance_staked === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="(balance !== null && balance_staked !== null)" class="flex flex-col gap-10 my-10 w-full">
+	<div v-if="(balance !== null && balance_staked !== null)" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
 			<Table>
 				<TableRow v-if="(address !== null)">

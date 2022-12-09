@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col gap-10 my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
         <input v-model="public" type="text">
         <input v-model="secret" type="text">
 	</div>

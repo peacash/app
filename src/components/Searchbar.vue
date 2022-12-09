@@ -1,5 +1,5 @@
 <template>
-    <Description class="my-10">
+    <Description class="my-2 md:my-10">
         <input
             v-model=search_value
             ref="search"

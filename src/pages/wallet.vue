@@ -14,9 +14,9 @@
 </style>
 <template>
 	<Address v-if="public" :address="public" />
-	<div class="flex flex-col gap-10 my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
-			<div class="flex gap-2 md:gap-10 justify-center">
+			<div class="flex gap-2 md:gap-2 md:gap-10 justify-center">
 				<Button @click="view = 'receive'">Receive</Button>
 				<Button @click="view = 'transaction'">Transaction</Button>
 				<Button @click="view = 'stake'">Stake</Button>
@@ -38,7 +38,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'transaction' && secret)" >
-			<div class="flex flex-col gap-2 sm:gap-10 mx-auto">
+			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
                     rounded
@@ -67,7 +67,7 @@
 			</div>
 		</Description>
 		<Description v-if="(view == 'stake' && secret)" >
-			<div class="flex flex-col gap-2 sm:gap-10 mx-auto">
+			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
                     rounded
@@ -80,7 +80,7 @@
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
-				<div class="flex justify-center gap-2 sm:gap-10">
+				<div class="flex justify-center gap-2 sm:gap-2 md:gap-10">
 					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
 					<Button @click="stake_send()">Send</Button>
 				</div>
@@ -93,7 +93,7 @@
 			</div>
 		</Description>
 		<Description v-else-if="(view == 'secret' && secret)" >
-			<div class="flex flex-col gap-10">
+			<div class="flex flex-col gap-2 md:gap-10">
 				<input disabled v-model="secret" type="text" class="
 					secret
                     text-black
