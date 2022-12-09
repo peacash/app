@@ -1,5 +1,5 @@
 <template>
-	<Endpoint />
+	<Endpoints />
 </template>
 <script>
 export default {
