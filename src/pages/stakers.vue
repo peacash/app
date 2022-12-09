@@ -56,9 +56,9 @@ export default {
 			}, 3000);
 		},
 		fetchData() {
-			let endpoint = window.localStorage.getItem("endpoint");
-			if (!endpoint) return
-			fetch(endpoint + "/dynamic").then(res => res.json()).then(data => {
+			let url = window.localStorage.getItem("url");
+			if (!url) return
+			fetch(url + "/dynamic").then(res => res.json()).then(data => {
 				this.dynamic = data
 			})
 		}

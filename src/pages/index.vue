@@ -68,8 +68,9 @@
 				gap-2 md:gap-10
             ">
 				<router-link class="link" to="/stakers">/stakers</router-link>
-				<router-link class="link" to="/compare">/compare</router-link>
 				<router-link class="link" to="/latest">/latest</router-link>
+				<router-link class="link" to="/settings">/wallet</router-link>
+				<router-link class="link" to="/settings">/settings</router-link>
 			</div>
         </Description>
 	</div>
@@ -106,12 +107,12 @@ export default {
 			return string.slice(0, 12) + "..." + string.slice(-8)
 		},
 		fetchData() {
-			let endpoint = window.localStorage.getItem("endpoint");
-			if (!endpoint) return
-			fetch(endpoint + "/sync").then(res => res.json()).then(data => {
+			let url = window.localStorage.getItem("url");
+			if (!url) return
+			fetch(url + "/sync").then(res => res.json()).then(data => {
 				this.sync = data
 			})
-			fetch(endpoint + "/info").then(res => res.json()).then(data => {
+			fetch(url + "/info").then(res => res.json()).then(data => {
 				this.info = data
 			})
 		}

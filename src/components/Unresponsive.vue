@@ -10,7 +10,7 @@
 export default {
     data() {
 		return {
-            endpoint: localStorage.getItem("endpoint"),
+            endpoint: localStorage.getItem("url"),
 			https: window.location.protocol === "https:",
 			host: window.location.host
 		}

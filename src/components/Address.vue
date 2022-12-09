@@ -64,13 +64,13 @@ export default {
 			}, 3000);
 		},
 		fetchData() {
-			let endpoint = window.localStorage.getItem("endpoint")
-			if (!endpoint) return
+			let url = window.localStorage.getItem("url")
+			if (!url) return
 			if (!this.address) return
-			fetch(endpoint + "/balance/" + this.address).then(res => res.text()).then(data => {
+			fetch(url + "/balance/" + this.address).then(res => res.text()).then(data => {
 				this.balance = data
 			})
-			fetch(endpoint + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
+			fetch(url + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
 				this.balance_staked = data
 			})
 		},

@@ -76,7 +76,7 @@ export default {
 	methods: {
 		fetchData() {
 			if (!this.hash) return
-			fetch(window.localStorage.getItem("endpoint") + "/transaction/" + this.hash).then(res => res.json()).then(data => {
+			fetch(window.localStorage.getItem("url") + "/transaction/" + this.hash).then(res => res.json()).then(data => {
 				this.transaction = data
 			})
 		},

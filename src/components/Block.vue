@@ -116,10 +116,10 @@ export default {
 	methods: {
 		fetchData() {
 			if (!this.hash) return
-			fetch(window.localStorage.getItem("endpoint") + "/block/" + this.hash).then(res => res.json()).then(data => {
+			fetch(window.localStorage.getItem("url") + "/block/" + this.hash).then(res => res.json()).then(data => {
 				this.block = data
 			})
-			fetch(window.localStorage.getItem("endpoint") + "/height/" + this.hash).then(res => res.json()).then(data => {
+			fetch(window.localStorage.getItem("url") + "/height/" + this.hash).then(res => res.json()).then(data => {
 				this.height = data
 			})
 		},

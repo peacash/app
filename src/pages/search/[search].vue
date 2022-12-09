@@ -12,14 +12,14 @@ export default {
     data() {
 		return {
 			failed: false,
-			endpoint: null,
+			url: null,
 			timeout: false
 		}
 	},
 	methods: {
 		fetchData() {
-			let endpoint = window.localStorage.getItem("endpoint");
-			if (!endpoint) return
+			let url = window.localStorage.getItem("url");
+			if (!url) return
 			let search = this.$route.params.search
 			if (!search) {
 				return
@@ -45,12 +45,8 @@ export default {
 				this.$router.replace('/stakers')
 				return
 			}
-			if (["co", "com", "comp", "compa", "compar", "compare"].includes(search)) {
-				this.$router.replace('/compare')
-				return
-			}
 			if (search === parseInt(search).toString() && parseInt(search) !== NaN) {
-				fetch(endpoint + "/hash/" + search).then(res => res.json()).then(data => {
+				fetch(url + "/hash/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/block/' + data)
 				}).catch(() => {
 					this.failed = true
@@ -58,20 +54,20 @@ export default {
 				return
 			}
 			if (search.toLowerCase().startsWith('0x')) {
-				fetch(endpoint + "/balance/" + search).then(res => res.json()).then(data => {
+				fetch(url + "/balance/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/address/' + search)
 				}).catch(() => {
 					this.failed = true
 				})
 				return
 			}
-			fetch(endpoint + "/block/" + search).then(res => res.json()).then(data => {
+			fetch(url + "/block/" + search).then(res => res.json()).then(data => {
 				this.$router.replace('/block/' + search)
 			}).catch(() => {
-				fetch(endpoint + "/transaction/" + search).then(res => res.json()).then(data => {
+				fetch(url + "/transaction/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/transaction/' + search)
 				}).catch(() => {
-					fetch(endpoint + "/stake/" + search).then(res => res.json()).then(data => {
+					fetch(url + "/stake/" + search).then(res => res.json()).then(data => {
 						this.$router.replace('/stake/' + search)
 					}).catch(() => {
 						this.failed = true
