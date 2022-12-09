@@ -41,18 +41,18 @@
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-                <input v-for="(test, index) in tests" :key="(test, index)"
+                <input v-for="(url, index) in urls" :key="(test, index)"
                     @click="select(index)"
                     @keydown="select_enter($event, index)"
                     @input="update($event, index)"
-                    :value=test.url
+                    :value=url
                     class="
                         text-black
                         rounded
                         w-full
                         sm:ring-1 sm:ring-black sm:ring-opacity-20
                     "
-                    :class="test?.sync ? 'green' : 'red'"
+                    :class="tests.find(e => e.url === url)?.sync ? 'green' : 'red'"
                     type="text">
             </div>
         </Description>
@@ -81,15 +81,10 @@ export default {
             localStorage.setItem('url', url)
             localStorage.setItem('urls', JSON.stringify(this.urls))
             this.url_input = ""
-            this.tests.unshift({
-                url,
-                sync: null
-            })
         },
         remove(index) {
             let url = this.urls[index]
             this.urls.splice(index, 1)
-            this.tests.splice(index, 1)
             localStorage.setItem('urls', JSON.stringify(this.urls))
             if (this.url == url) {
                 this.url = null
