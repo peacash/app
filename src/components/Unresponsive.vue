@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center" style="color: #f00;">Endpoint <i>{{ endpoint }}</i> seems unresponsive.</div>
+    <div class="text-center" style="color: #f00;">Endpoint <i>{{ url }}</i> seems unresponsive!</div>
     <div v-if="https" class="text-center">
         Try the
         <a :href="'http://' + host">http version</a>
@@ -10,7 +10,7 @@
 export default {
     data() {
 		return {
-            endpoint: localStorage.getItem("url"),
+            url: localStorage.getItem("url"),
 			https: window.location.protocol === "https:",
 			host: window.location.host
 		}
