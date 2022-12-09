@@ -1,5 +1,13 @@
+<style scoped>
+	a {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+</style>
 <template>
-    <div class="text-center" style="color: #f00;">Endpoint <i>{{ url }}</i> seems unresponsive!</div>
+    <div class="text-center" style="color: #f00;">Endpoint <a :href=url><i>{{ url }}</i></a> seems unresponsive!</div>
     <div v-if="https" class="text-center">
         Try the
         <a :href="'http://' + host">http version</a>
