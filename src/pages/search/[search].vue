@@ -33,15 +33,15 @@ export default {
 				this.$router.replace('/wallet')
 				return
 			}
-			if (["setting", "settings"].includes(search)) {
+			if (["se", "set", "sett", "setti", "settin", "setting", "settings"].includes(search)) {
 				this.$router.replace('/settings')
 				return
 			}
-			if (["latest", "recent", "blocks"].includes(search)) {
+			if (["l", "la", "lat", "late", "lates", "latest", "recent", "blocks"].includes(search)) {
 				this.$router.replace('/latest')
 				return
 			}
-			if (["staker", "stakers"].includes(search)) {
+			if (["st", "sta", "stak", "stake", "staker", "stakers"].includes(search)) {
 				this.$router.replace('/stakers')
 				return
 			}
