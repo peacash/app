@@ -32,7 +32,7 @@
                     w-full
                 ">
 				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
-					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); cursor: pointer;" class="p-5 w-full" />
+					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; left: 50%; transform: translate(-50%, 0); cursor: pointer;" class="p-5 w-full" />
 				</div>
 				<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
 			</div>
