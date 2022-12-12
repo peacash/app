@@ -14,6 +14,12 @@
     .blue {
         background-color: #eef;
     }
+    .text-green {
+		color: #161;
+	}
+	.text-red {
+		color: #611;
+	}
 </style>
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
@@ -46,7 +52,12 @@
             <div class="
                 flex justify-center
                 text-black
-            ">{{ url ? "Now using - " + url : "Configure an API endpoint to use." }}</div>
+            ">
+                <div v-if="url" :class="
+                    (map.get(url)?.sync ? 'text-green' : 'text-red')
+                " style="font-weight: 600;">{{ url }}</div>
+                <div v-else>Configure an API endpoint to use.</div>
+            </div>
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
