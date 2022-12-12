@@ -2,8 +2,9 @@
 	.link {
 		text-decoration: none;
 	}
-	.public:hover {
-        background-color: #cfc;
+	.green:hover {
+        background-color: #ccffcc66;
+		box-shadow: 0 0 1rem 1rem #ccffcc33;
     }
 	.secret:hover {
         background-color: #fcc;
@@ -11,14 +12,19 @@
     input, textarea {
         border: none;
     }
+	.qr {
+		transition: 150ms ease-in-out;
+		cursor: pointer;
+		user-select: none;
+	}
 </style>
 <template>
 	<Address v-if="public" :address="public" />
 	<div class="flex flex-col gap-10 md:gap-20 my-10 md:my-20 w-full">
 		<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
-			<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; cursor: pointer;" class="p-5 w-full sm:top-1/2 sm:-translate-y-1/2 left-1/2 -translate-x-1/2" />
+			<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; cursor: pointer; user-select: none;" class="p-5 w-full sm:top-1/2 sm:-translate-y-1/2 left-1/2 -translate-x-1/2" />
 		</div>
-		<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
+		<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto green qr" />
 		<Description>
 			<form @submit="transaction_send" class="flex flex-col gap-2 sm:gap-2 md:gap-10">
 				<input v-model="transaction_output" type="text" placeholder="tx output" class="
