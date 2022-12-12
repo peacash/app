@@ -9,9 +9,11 @@
 <template>
     <Description class="my-2 md:my-10">
         <input
+            @input="search"
+            @click="search"
+            @keydown="search"
             v-model=search_value
             ref="search"
-            v-on:input="search"
             class="
                 text-black
                 rounded
@@ -36,7 +38,13 @@ export default {
 		}
 	},
 	methods: {
-		search() {
+		search(e) {
+            if (e.type === "keydown" && e.key != "Enter") {
+                return
+            }
+            if (e.type === "click" && !e.target.value) {
+                return
+            }
             clearTimeout(this.timer)
             this.timer = setTimeout(() => {
                 this.ip4 = 0
