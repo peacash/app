@@ -15,29 +15,17 @@
 <template>
 	<Address v-if="public" :address="public" />
 	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+		<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
+			<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; cursor: pointer;" class="p-5 w-full sm:top-1/2 sm:-translate-y-1/2 left-1/2 -translate-x-1/2" />
+		</div>
+		<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
 		<Description>
-			<div class="flex gap-2 md:gap-2 md:gap-10 justify-center">
-				<Button @click="view = 'receive'">Receive</Button>
-				<Button @click="view = 'transaction'">Transaction</Button>
-				<Button @click="view = 'stake'">Stake</Button>
-				<Button @click="view = 'secret'">Secret</Button>
-			</div>
-		</Description>
-		<Description v-if="(view == 'receive' && public)" >
-			<div class="flex flex-col mx-auto">
-				<input disabled v-model="public" type="text" placeholder="output address" class="
-                    text-black
-                    rounded
-					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
-                ">
-				<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
-					<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; left: 50%; transform: translate(-50%, 0); cursor: pointer;" class="p-5 w-full" />
-				</div>
-				<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
-			</div>
-		</Description>
-		<Description v-if="(view == 'transaction' && secret)" >
+            <div class="
+                flex justify-center
+                text-black
+            ">Send</div>
+        </Description>
+		<Description>
 			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
 				<input v-model="transaction_output" type="text" placeholder="output address" class="
                     text-black
@@ -66,7 +54,13 @@
 				"></textarea>
 			</div>
 		</Description>
-		<Description v-if="(view == 'stake' && secret)" >
+		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">Stake</div>
+        </Description>
+		<Description>
 			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
 				<input v-model="stake_amount" type="text" placeholder="amount" class="
                     text-black
@@ -92,7 +86,13 @@
 				"></textarea>
 			</div>
 		</Description>
-		<Description v-else-if="(view == 'secret' && secret)" >
+		<Description>
+            <div class="
+                flex justify-center
+                text-black
+            ">Secret</div>
+        </Description>
+		<Description>
 			<div class="flex flex-col gap-2 md:gap-10">
 				<input disabled v-model="secret" type="text" class="
 					secret
