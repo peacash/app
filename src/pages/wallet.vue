@@ -14,86 +14,99 @@
 </style>
 <template>
 	<Address v-if="public" :address="public" />
-	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+	<div class="flex flex-col gap-10 md:gap-20 my-10 md:my-20 w-full">
 		<div v-if="big_qr" @click="(big_qr = false)" class="w-full h-full absolute top-0 left-0" style="background-color: #ffffffcc;">
 			<QR :text="'http://app.pea.cash/#/wallet?output=' + public" style="max-width: 40rem; position: absolute; cursor: pointer;" class="p-5 w-full sm:top-1/2 sm:-translate-y-1/2 left-1/2 -translate-x-1/2" />
 		</div>
 		<QR v-else @click="(big_qr = true)" :text="'http://app.pea.cash/#/wallet?output=' + public" class="w-20 m-0 mx-auto" style="cursor: pointer;" />
 		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Send</div>
-        </Description>
-		<Description>
-			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
-				<input v-model="transaction_output" type="text" placeholder="output address" class="
-                    text-black
-                    rounded
+			<form @submit="transaction_send" class="flex flex-col gap-2 sm:gap-2 md:gap-10">
+				<input v-model="transaction_output" type="text" placeholder="tx output" class="
+					text-black
+					rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
-                ">
-				<input v-model="transaction_amount" type="text" placeholder="amount" class="
-                    text-black
-                    rounded
+					w-full
+				">
+				<input v-model="transaction_amount" type="text" placeholder="tx amount" class="
+					text-black
+					rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
-                ">
-				<input v-model="transaction_fee" type="text" placeholder="fee" class="
-                    text-black
-                    rounded
+					w-full
+				">
+				<input v-model="transaction_fee" type="text" placeholder="tx fee" class="
+					text-black
+					rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
-                ">
-				<Button @click="transaction_send()" class="mx-auto">Send</Button>
+					w-full
+				">
+				<input
+					type="submit"
+					value="Send Tx"
+					class="
+						text-black
+						rounded
+						text-sm md:text-lg
+						w-24 sm:w-32 md:w-40
+						h-10
+						mx-auto
+						ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+						cursor-pointer
+					">
 				<textarea disabled v-if="transaction" v-model="transaction" rows="2" class="
 					text-black
-                    rounded
+					rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
+					w-full
 				"></textarea>
-			</div>
+			</form>
 		</Description>
 		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Stake</div>
-        </Description>
-		<Description>
-			<div class="flex flex-col gap-2 sm:gap-2 md:gap-10 mx-auto">
-				<input v-model="stake_amount" type="text" placeholder="amount" class="
+			<form @submit="stake_send" class="flex flex-col gap-2 sm:gap-2 md:gap-10">
+				<input v-model="stake_amount" type="text" placeholder="stake amount" class="
                     text-black
                     rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
-				<input v-model="stake_fee" type="text" placeholder="fee" class="
+				<input v-model="stake_fee" type="text" placeholder="stake fee" class="
                     text-black
                     rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
-				<div class="flex justify-center gap-2 sm:gap-2 md:gap-10">
-					<Button @click="(stake_deposit = !stake_deposit)">{{ stake_deposit ? "Deposit" : "Withdraw" }}</Button>
-					<Button @click="stake_send()">Send</Button>
-				</div>
+				<input
+					@click="(stake_deposit = !stake_deposit)"
+					@input="(stake_deposit = !stake_deposit)"
+					:value="stake_deposit ? 'Deposit' : 'Withdraw'" type="text" placeholder="stake fee" class="
+                    text-black
+                    rounded
+					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+                    w-full
+					cursor-pointer
+                ">
+				<input
+					type="submit"
+					value="Send Stake"
+					class="
+						text-black
+						rounded
+						text-sm md:text-lg
+						w-24 sm:w-32 md:w-40
+						h-10
+						mx-auto
+						ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+						cursor-pointer
+					">
 				<textarea disabled v-if="stake" v-model="stake" rows="2" class="
 					text-black
                     rounded
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
 				"></textarea>
-			</div>
+			</form>
 		</Description>
 		<Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">Secret</div>
-        </Description>
-		<Description>
-			<div class="flex flex-col gap-2 md:gap-10">
+			<form @submit="remove" class="flex flex-col gap-2 sm:gap-2 md:gap-10">
 				<input disabled v-model="secret" type="text" class="
 					secret
                     text-black
@@ -101,8 +114,20 @@
 					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     w-full
                 ">
-				<Button class="mx-auto" v-if="secret" @click="remove()">Remove</Button>
-			</div>
+				<input
+					type="submit"
+					value="Remove"
+					class="
+						text-black
+						rounded
+						text-sm md:text-lg
+						w-24 sm:w-32 md:w-40
+						h-10
+						mx-auto
+						ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+						cursor-pointer
+					">
+			</form>
 		</Description>
 	</div>
 </template>
@@ -111,7 +136,6 @@ import util from "../util.ts"
 export default {
 	data() {
 		return {
-			view: "receive",
             secret: null,
 			public: null,
 			transaction: "",
@@ -127,9 +151,6 @@ export default {
 	},
 	mounted() {
 		document.title = "Wallet - Pea"
-		if (this.transaction_output || this.transaction_amount || this.transaction_fee) {
-			this.view = "transaction"
-		}
 		this.load()
     },
 	methods: {
@@ -141,7 +162,8 @@ export default {
 			}
 			this.public = util.public(this.secret)
 		},
-		remove() {
+		remove(e) {
+			e.preventDefault()
 			window.localStorage.removeItem("secret")
 			this.load()
 		},
@@ -152,7 +174,8 @@ export default {
 			this.stake = util.stake(this.stake_deposit, this.stake_amount, this.stake_fee, this.secret)
 			this.stake_confirm = true
 		},
-		transaction_send() {
+		transaction_send(e) {
+            e.preventDefault()
 			this.transaction_sign()
 			fetch(window.localStorage.getItem("url") + "/transaction", {
 				method: "POST",
@@ -161,7 +184,8 @@ export default {
 				this.transaction = data
 			})
 		},
-		stake_send() {
+		stake_send(e) {
+			e.preventDefault()
 			this.stake_sign()
 			this.stake_confirm = false
 			fetch(window.localStorage.getItem("url") + "/stake", {
