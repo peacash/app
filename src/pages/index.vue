@@ -61,19 +61,6 @@
 				</TableRow>
 			</Table>
 		</Description>
-		<Description>
-            <div class="
-                flex justify-center
-                text-black
-				gap-2 md:gap-10
-            ">
-				<router-link class="link" to="/stakers">/stakers</router-link>
-				<router-link class="link" to="/latest">/latest</router-link>
-				<router-link class="link" to="/peers">/peers</router-link>
-				<router-link class="link" to="/wallet">/wallet</router-link>
-				<router-link class="link" to="/settings">/settings</router-link>
-			</div>
-        </Description>
 	</div>
 </template>
 <script>
