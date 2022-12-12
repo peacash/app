@@ -14,12 +14,6 @@
     .blue {
         background-color: #eef;
     }
-    .text-green {
-		color: #161;
-	}
-	.text-red {
-		color: #611;
-	}
 </style>
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
@@ -35,7 +29,7 @@
                         ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                     "
                     :class="
-                        (map.get(url)?.sync ? 'text-green' : 'text-red')
+                        (map.get(url)?.sync ? 'green' : 'red')
                     " style="font-weight: 600;"
                     type="text" placeholder="http://0.0.0.0:9332">
         </Description>
