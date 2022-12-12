@@ -24,6 +24,22 @@
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
         <Description>
+                <input
+                    :value="url ? url : 'Configure an API endpoint to use.'"
+                    disabled
+                    class="
+                        text-black
+                        rounded
+                        mx-auto
+                        flex
+                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+                    "
+                    :class="
+                        (map.get(url)?.sync ? 'text-green' : 'text-red')
+                    " style="font-weight: 600;"
+                    type="text" placeholder="http://0.0.0.0:9332">
+        </Description>
+        <Description>
             <form @submit="add" class="flex gap-2 md:gap-2 md:gap-10">
                 <input
                     v-model=url_input
@@ -47,17 +63,6 @@
                         cursor-pointer
                     ">
             </form>
-        </Description>
-        <Description>
-            <div class="
-                flex justify-center
-                text-black
-            ">
-                <div v-if="url" :class="
-                    (map.get(url)?.sync ? 'text-green' : 'text-red')
-                " style="font-weight: 600;">{{ url }}</div>
-                <div v-else>Configure an API endpoint to use.</div>
-            </div>
         </Description>
         <Description>
             <div class="flex flex-col gap-2 sm:gap-2 md:gap-10">
