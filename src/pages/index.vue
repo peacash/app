@@ -33,7 +33,7 @@
 					<TD2>{{ sync.index }}</TD2>	
 				</TableRow>
 				<TableRow>
-					<TD1 class="w-60">Gossipsub peers</TD1>	
+					<TD1 class="w-60">Peers</TD1>	
 					<TD2>{{ sync.peers }}</TD2>	
 				</TableRow>
 				<TableRow>
