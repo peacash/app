@@ -69,6 +69,7 @@
             ">
 				<router-link class="link" to="/stakers">/stakers</router-link>
 				<router-link class="link" to="/latest">/latest</router-link>
+				<router-link class="link" to="/peers">/peers</router-link>
 				<router-link class="link" to="/settings">/wallet</router-link>
 				<router-link class="link" to="/settings">/settings</router-link>
 			</div>
