@@ -16,9 +16,10 @@
 	<div v-if="(peers === null && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="peers !== null" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
-			<Table>
+			<Table v-if="peers !== null" >
+				<div v-if="!peers.length" class="text-center italic">Node has no peer connections.</div>
 				<TableRow v-for="(multiaddr, index) in peers" :key="(multiaddr, index)">
 					<TD1>#{{ index }}</TD1>	
 					<TD2 class="justify-center">{{ multiaddr }}</TD2>	

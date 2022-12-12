@@ -16,9 +16,10 @@
 	<div v-if="(dynamic === null && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="dynamic !== null" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
-			<Table>
+			<Table v-if="dynamic !== null" >
+				<div v-if="!dynamic.stakers.length" class="text-center italic">No stakers.</div>
 				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
 					<TD1>#{{ index }}</TD1>	
 					<TD2 class="justify-center">

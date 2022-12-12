@@ -16,9 +16,10 @@
 	<div v-if="((sync === null || dynamic === null || trusted === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="(sync !== null && dynamic !== null && trusted !== null)" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+	<div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
-			<Table>
+			<Table v-if="(sync !== null && dynamic !== null && trusted !== null)">
+				<div v-if="![...dynamic.latest_hashes, ...trusted.latest_hashes].concat().length" class="text-center italic">No hashes.</div>
 				<TableRow v-for="(hash, index) in [...dynamic.latest_hashes, ...trusted.latest_hashes].concat()" :key="(hash, index)">
 					<TD1>#{{ sync.height - index }}</TD1>	
 					<TD2 class="justify-center">
