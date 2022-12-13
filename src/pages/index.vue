@@ -10,31 +10,29 @@
 	}
 </style>
 <template>
-	<div v-if="((sync === null || info === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
+	<div v-if="((sync === null || info === null || peers === null) && timeout)" class="flex flex-col justify-center mx-auto my-4">
 		<Unresponsive />
 	</div>
-	<div v-if="(sync !== null && info !== null)" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
+	<div v-if="(sync !== null && info !== null && peers !== null)" class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
 		<Description>
 			<Table>
 				<TableRow>
+					<TD1 class="w-60">Peers</TD1>
+					<TD2>
+						<router-link class="link" to="/peers">{{ peers.length }}</router-link>
+					</TD2>
+				</TableRow>
+				<TableRow>
 					<TD1 class="w-60">Synchronization</TD1>	
-					<TD2>{{ sync.sync }}</TD2>	
+					<TD2>{{ sync.status }}</TD2>	
 				</TableRow>
 				<TableRow>
 					<TD1 class="w-60">Last&nbsp;block&nbsp;seen</TD1>	
-					<TD2>{{ sync.last }}</TD2>	
+					<TD2>{{ sync.last_seen }}</TD2>	
 				</TableRow>
 				<TableRow>
 					<TD1 class="w-60">Height</TD1>	
 					<TD2>{{ sync.height }}</TD2>	
-				</TableRow>
-				<TableRow>
-					<TD1 class="w-60">Index</TD1>	
-					<TD2>{{ sync.index }}</TD2>	
-				</TableRow>
-				<TableRow>
-					<TD1 class="w-60">Peers</TD1>	
-					<TD2>{{ sync.peers }}</TD2>	
 				</TableRow>
 				<TableRow>
 					<TD1 class="w-60">Tree&nbsp;size</TD1>	
@@ -69,6 +67,7 @@ export default {
 		return {
 			sync: null,
 			info: null,
+			peers: null,
 			interval: null,
 			timeout: false,
 			shorten_public_key: true
@@ -102,6 +101,9 @@ export default {
 			})
 			fetch(url + "/info").then(res => res.json()).then(data => {
 				this.info = data
+			})
+			fetch(url + "/peers").then(res => res.json()).then(data => {
+				this.peers = data
 			})
 		}
 	},
