@@ -74,7 +74,7 @@
                             w-full
                             ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                         "
-                        :class="(map.get(u).status ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
+                        :class="(map.get(u)?.status ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
                         type="text">
                     <label :for=u class="
                         text-xs lg:text-sm
