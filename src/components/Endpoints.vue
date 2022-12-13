@@ -18,20 +18,20 @@
 <template>
     <div class="flex flex-col gap-2 md:gap-10 my-2 md:my-10 w-full">
         <Description>
-                <input
-                    :value="url ? url : 'Configure an API endpoint to use.'"
-                    disabled
-                    class="
-                        text-black
-                        rounded
-                        mx-auto
-                        flex
-                        ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    "
-                    :class="
-                        (map.get(url)?.sync ? 'green' : 'red')
-                    " style="font-weight: 600;"
-                    type="text" placeholder="http://0.0.0.0:9332">
+            <input
+                :value="url ? url : 'Configure an API endpoint to use.'"
+                disabled
+                class="
+                    text-black
+                    rounded
+                    mx-auto
+                    flex
+                    ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+                "
+                :class="
+                    (map.get(url)?.status ? 'green' : 'red')
+                " style="font-weight: 600;"
+                type="text" placeholder="http://0.0.0.0:9332">
         </Description>
         <Description>
             <form @submit="add" class="flex gap-2 md:gap-2 md:gap-10">
@@ -73,7 +73,7 @@
                             w-full
                             ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                         "
-                        :class="(map.get(u) ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
+                        :class="(map.get(u).status ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
                         type="text">
                     <label :for=u class="
                         text-xs lg:text-sm
