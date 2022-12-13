@@ -25,12 +25,13 @@
                     text-black
                     rounded
                     mx-auto
+                    w-full
                     flex
                     ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
                 "
                 :class="
                     (map.get(url)?.status ? 'green' : 'red')
-                " style="font-weight: 600;"
+                " style="font-weight: 600; max-width: 20rem;"
                 type="text" placeholder="http://0.0.0.0:9332">
         </Description>
         <Description>
