@@ -89,7 +89,7 @@ export default {
 			this.fetchData();
 			this.interval = setInterval(() => {
 				this.fetchData()
-			}, 3000);
+			}, 1000);
 		},
 		shorten(string) {
 			return string.slice(0, 12) + "..." + string.slice(-8)

@@ -142,7 +142,7 @@ export default {
 			this.fetchData();
 			this.interval = setInterval(() => {
 				this.fetchData()
-			}, 3000);
+			}, 1000);
 		},
 		fetchData() {
 			let urls = JSON.parse(window.localStorage.getItem("urls"))
