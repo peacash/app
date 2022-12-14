@@ -28,6 +28,7 @@
                     w-full
                     flex
                     ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
+                    text-center
                 "
                 :class="
                     (map.get(url)?.status ? 'green' : 'red')
