@@ -81,7 +81,7 @@
                         text-xs lg:text-sm
                         h-1 lg:h-2
                         ml-1
-                    ">{{ map.get(u) }}</label>
+                    ">Synchronization {{ map.get(u).status }}. Block {{ map.get(u).height }} seen {{ map.get(u).last_seen }}.</label>
                 </div>
             </div>
         </Description>
