@@ -77,7 +77,7 @@
                         "
                         :class="(map.get(u)?.status ? 'green' : 'red') + ' ' + (u === url ? 'blue ring-opacity-50 sm:ring-opacity-60' : '')"
                         type="text">
-                    <label :for=u class="
+                    <label v-if="map.get(u)?.status" :for=u class="
                         text-xs lg:text-sm
                         h-1 lg:h-2
                         ml-1
