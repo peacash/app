@@ -25,17 +25,17 @@
 					<TD2 v-else>{{ transaction.hash }}</TD2>
 				</TableRow>
 				<TableRow v-if="transaction">
-					<TD1 class="w-60">Public&nbsp;key&nbsp;input</TD1>
-					<TD2 v-if="shorten_public_key_input" @click="(shorten_public_key_input = false)">{{ shorten(transaction.public_key_input) }}</TD2>
+					<TD1 class="w-60">Input&nbsp;address</TD1>
+					<TD2 v-if="shorten_input_address" @click="(shorten_input_address = false)">{{ shorten(transaction.input_address) }}</TD2>
 					<TD2 v-else>
-        				<router-link class="link" :to="'/address/' + transaction.public_key_input">{{ transaction.public_key_input }}</router-link>
+        				<router-link class="link" :to="'/address/' + transaction.input_address">{{ transaction.input_address }}</router-link>
 					</TD2>
 				</TableRow>
 				<TableRow v-if="transaction">
-					<TD1 class="w-60">Public&nbsp;key&nbsp;output</TD1>
-					<TD2 v-if="shorten_public_key_output" @click="(shorten_public_key_output = false)">{{ shorten(transaction.public_key_output) }}</TD2>
+					<TD1 class="w-60">Output&nbsp;address</TD1>
+					<TD2 v-if="shorten_output_address" @click="(shorten_output_address = false)">{{ shorten(transaction.output_address) }}</TD2>
 					<TD2 v-else>
-        				<router-link class="link" :to="'/address/' + transaction.public_key_output">{{ transaction.public_key_output }}</router-link>
+        				<router-link class="link" :to="'/address/' + transaction.output_address">{{ transaction.output_address }}</router-link>
 					</TD2>
 				</TableRow>
 				<TableRow v-if="transaction">
@@ -68,8 +68,8 @@ export default {
 		return {
 			transaction: null,
 			shorten_hash: true,
-			shorten_public_key_input: true,
-			shorten_public_key_output: true,
+			shorten_input_address: true,
+			shorten_output_address: true,
 			shorten_signature: true
 		}
 	},

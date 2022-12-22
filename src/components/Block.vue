@@ -41,10 +41,10 @@
 					<TD2>{{ new Date(block.timestamp * 1000).toLocaleString() }}</TD2>
 				</TableRow>
 				<TableRow v-if="block">
-					<TD1 class="w-60">Public&nbsp;key</TD1>
-					<TD2 v-if="shorten_public_key" @click="(shorten_public_key = false)">{{ shorten(block.public_key) }}</TD2>
+					<TD1 class="w-60">Address</TD1>
+					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(block.address) }}</TD2>
 					<TD2 v-else>
-						<router-link class="link" :to="'/address/' + block.public_key">{{ block.public_key }}</router-link>
+						<router-link class="link" :to="'/address/' + block.address">{{ block.address }}</router-link>
 					</TD2>
 				</TableRow>
 				<TableRow v-if="block">
@@ -109,7 +109,7 @@ export default {
 			height: null,
 			shorten_hash: true,
 			shorten_previous_hash: true,
-			shorten_public_key: true,
+			shorten_address: true,
 			shorten_signature: true
 		}
 	},

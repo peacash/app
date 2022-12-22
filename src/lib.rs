@@ -17,7 +17,7 @@ extern "C" {
 pub fn secret(input: &[u8]) -> String {
     let hash = pea_core::util::hash(input);
     let key = pea_key::Key::from_secret_key_bytes(&hash);
-    key.secret()
+    pea_address::secret::encode(&key.secret_key())
 }
 
 #[wasm_bindgen]
@@ -26,12 +26,12 @@ pub fn address(secret: &str) -> String {
         Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
         Err(err) => return err.to_string(),
     };
-    key.public()
+    pea_address::address::encode(&key.address())
 }
 
 #[wasm_bindgen]
 pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> String {
-    let public_key_bytes = match pea_address::public::decode(address) {
+    let output_address = match pea_address::address::decode(address) {
         Ok(a) => a,
         Err(err) => return err.to_string(),
     };
@@ -49,7 +49,7 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> Stri
     };
     let timestamp = pea_core::util::timestamp();
     let mut transaction =
-        pea_transaction::Transaction::new(public_key_bytes, amount, fee, timestamp);
+        pea_transaction::Transaction::new(output_address, amount, fee, timestamp);
     transaction.sign(&key);
     match transaction.validate() {
         Ok(()) => {}

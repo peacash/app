@@ -20,10 +20,10 @@
 		<Description>
 			<Table v-if="dynamic !== null" >
 				<div v-if="!dynamic.stakers.length" class="text-center italic">No stakers.</div>
-				<TableRow v-for="(public_key, index) in dynamic.stakers" :key="(hash, index)">
+				<TableRow v-for="(address, index) in dynamic.stakers" :key="(address, index)">
 					<TD1>#{{ index }}</TD1>	
 					<TD2 class="justify-center">
-						<router-link class="link" :to="('/address/' + public_key)">{{ public_key }}</router-link>
+						<router-link class="link" :to="('/address/' + address)">{{ address }}</router-link>
 					</TD2>	
 				</TableRow>
 			</Table>

@@ -25,10 +25,10 @@
 					<TD2 v-else >{{ stake.hash }}</TD2>
 				</TableRow>
 				<TableRow v-if="stake">
-					<TD1 class="w-60">Public&nbsp;key</TD1>
-					<TD2 v-if="shorten_public_key" @click="(shorten_public_key = false)">{{ shorten(stake.public_key) }}</TD2>
+					<TD1 class="w-60">Address</TD1>
+					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(stake.address) }}</TD2>
 					<TD2 v-else >
-        				<router-link class="link" :to="'/address/' + stake.public_key">{{ stake.public_key }}</router-link>
+        				<router-link class="link" :to="'/address/' + stake.address">{{ stake.address }}</router-link>
 					</TD2>
 				</TableRow>
 				<TableRow v-if="stake">
@@ -66,7 +66,7 @@ export default {
 		return {
 			stake: null,
 			shorten_hash: true,
-			shorten_public_key: true,
+			shorten_address: true,
 			shorten_signature: true
 		}
 	},

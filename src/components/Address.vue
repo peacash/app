@@ -17,7 +17,7 @@
 		<Description>
 			<Table>
 				<TableRow v-if="(address !== null)">
-					<TD1 class="w-60">Public&nbsp;key</TD1>
+					<TD1 class="w-60">Address</TD1>
 					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(address) }}</TD2>
 					<TD2 v-else>{{ address }}</TD2>
 				</TableRow>

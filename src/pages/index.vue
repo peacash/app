@@ -39,10 +39,10 @@
 					<TD2>{{ info.tree_size }}</TD2>	
 				</TableRow>
 				<TableRow>
-					<TD1 class="w-60">Public&nbsp;key</TD1>	
-					<TD2 v-if="shorten_public_key" @click="(shorten_public_key = false)">{{ shorten(info.public_key) }}</TD2>	
+					<TD1 class="w-60">Address</TD1>	
+					<TD2 v-if="shorten_address" @click="(shorten_address = false)">{{ shorten(info.address) }}</TD2>	
 					<TD2 v-else>
-						<router-link class="link" :to="'/address/' + info.public_key">{{ info.public_key }}</router-link>
+						<router-link class="link" :to="'/address/' + info.address">{{ info.address }}</router-link>
 					</TD2>	
 				</TableRow>
 				<TableRow>
@@ -70,7 +70,7 @@ export default {
 			peers: null,
 			interval: null,
 			timeout: false,
-			shorten_public_key: true
+			shorten_address: true
 		}
 	},
     mounted() {

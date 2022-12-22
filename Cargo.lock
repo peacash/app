@@ -411,12 +411,12 @@ checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
 
 [[package]]
 name = "pea-address"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "237e39791c5047396bcfd48b986af45d5c8fd1980133ebb8076cdc4dd98e6322"
+checksum = "6513c041f22bb19e4b97154ab57bf2dfdd8ddbd51e7c1ec245425b34eda75858"
 dependencies = [
  "hex",
- "pea-core",
+ "pea-core 0.4.0",
 ]
 
 [[package]]
@@ -436,12 +436,19 @@ dependencies = [
 ]
 
 [[package]]
-name = "pea-int"
-version = "0.1.0"
+name = "pea-core"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "60444b207a670eda47e5b95b9e2b2183336db3e8640e6c6c90304a44b0affc0d"
+checksum = "b9a59699f3f9022e31e4dace2b09cf54670bd0e83d361b6861175c3819f5d49f"
 dependencies = [
- "pea-core",
+ "bincode",
+ "blake3",
+ "chrono",
+ "hex",
+ "merkle-cbt",
+ "rand",
+ "serde",
+ "serde-big-array",
 ]
 
 [[package]]
@@ -450,33 +457,32 @@ version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "34c98a89866ea4c9d3e6962456bb748e750b30c80f767f8d263ce47e41479e4a"
 dependencies = [
- "pea-core",
+ "pea-core 0.3.1",
 ]
 
 [[package]]
 name = "pea-key"
-version = "0.2.2"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a5717139f198d950c2af569ef5d5994c21782d61e12a36022c2ccc52f824bd55"
+checksum = "01f153dd180016570e1c94216df670250ce8212a530b496da2d091aad264241d"
 dependencies = [
  "ed25519",
  "ed25519-dalek",
- "pea-address",
- "pea-core",
+ "pea-core 0.4.0",
  "rand",
 ]
 
 [[package]]
 name = "pea-stake"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1a5dc195805ae7d59a54af77a5fca752f4629f94ab854e49d94a69a94d2a09a9"
+checksum = "1848d33f0adee8e2c7a4deaa72d81ffff857ab7a5b08afe51b896c9d4e70ade3"
 dependencies = [
  "bincode",
  "hex",
  "pea-address",
- "pea-core",
- "pea-int 0.1.0",
+ "pea-core 0.4.0",
+ "pea-int",
  "pea-key",
  "serde",
  "serde-big-array",
@@ -484,15 +490,15 @@ dependencies = [
 
 [[package]]
 name = "pea-transaction"
-version = "0.4.0"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3adf9b2281685b2d03b5cdbba6643bbdba828131f5bfca9789997c960ad23a58"
+checksum = "8f40501e74ac7d8bba4b0a7eb478b634ea999e9113dee0d4f909506e159e24dd"
 dependencies = [
  "bincode",
  "hex",
  "pea-address",
- "pea-core",
- "pea-int 0.1.0",
+ "pea-core 0.4.0",
+ "pea-int",
  "pea-key",
  "serde",
  "serde-big-array",
@@ -712,8 +718,8 @@ dependencies = [
  "getrandom 0.2.8",
  "hex",
  "pea-address",
- "pea-core",
- "pea-int 0.2.1",
+ "pea-core 0.4.0",
+ "pea-int",
  "pea-key",
  "pea-stake",
  "pea-transaction",
