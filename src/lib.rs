@@ -87,12 +87,3 @@ pub fn stake(deposit: bool, amount: &str, fee: &str, secret: &str) -> String {
         Err(err) => err.to_string(),
     }
 }
-
-#[wasm_bindgen]
-pub fn format_int(str: &str) -> String {
-    let num: u128 = match str.parse() {
-        Ok(a) => a,
-        Err(err) => return err.to_string(),
-    };
-    pea_int::to_string(num as u128)
-}

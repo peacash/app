@@ -23,18 +23,17 @@
 				</TableRow>
 				<TableRow v-if="(balance !== null)">
 					<TD1 class="w-60">Balance</TD1>
-					<TD2>{{ fmt(balance) }}</TD2>
+					<TD2>{{ balance }}</TD2>
 				</TableRow>
 				<TableRow v-if="(balance_staked !== null)">
 					<TD1 class="w-60">Balance&nbsp;staked</TD1>
-					<TD2>{{ fmt(balance_staked) }}</TD2>
+					<TD2>{{ balance_staked }}</TD2>
 				</TableRow>
 			</Table>
 		</Description>
 	</div>
 </template>
 <script>
-import { format_int } from "../../pkg";
 export default {
     props: {
         address: String
@@ -67,15 +66,12 @@ export default {
 			let url = window.localStorage.getItem("url")
 			if (!url) return
 			if (!this.address) return
-			fetch(url + "/balance/" + this.address).then(res => res.text()).then(data => {
+			fetch(url + "/balance/" + this.address).then(res => res.json()).then(data => {
 				this.balance = data
 			})
-			fetch(url + "/balance_staked/" + this.address).then(res => res.text()).then(data => {
+			fetch(url + "/balance_staked/" + this.address).then(res => res.json()).then(data => {
 				this.balance_staked = data
 			})
-		},
-		fmt(balance) {
-			return format_int(balance)
 		},
 		shorten(string) {
 			return string.slice(0, 12) + "..." + string.slice(-8)
