@@ -40,11 +40,11 @@
 				</TableRow>
 				<TableRow v-if="transaction">
 					<TD1 class="w-60">Amount</TD1>
-					<TD2>{{ balance_to_string(transaction.amount) }}</TD2>
+					<TD2>{{ transaction.amount }}</TD2>
 				</TableRow>
 				<TableRow v-if="transaction">
 					<TD1 class="w-60">Fee</TD1>
-					<TD2>{{ balance_to_string(transaction.fee) }}</TD2>
+					<TD2>{{ transaction.fee }}</TD2>
 				</TableRow>
 				<TableRow v-if="transaction">
 					<TD1 class="w-60">Timestamp</TD1>
@@ -82,20 +82,6 @@ export default {
 		},
 		shorten(string) {
 			return string.slice(0, 12) + "..." + string.slice(-8)
-		},
-		balance_to_string(balance) {
-			let decimals = 18
-			let string = '0'.repeat(decimals)
-			string += balance
-			let index = string.length - decimals
-			string = [string.slice(0, index), ".", string.slice(index)].join('')
-			while (string.startsWith("0")) {
-				string = string.slice(1)
-			}
-			if (string.startsWith(".")) {
-				string = "0" + string
-			}
-			return string
 		}
 	},
     mounted() {
