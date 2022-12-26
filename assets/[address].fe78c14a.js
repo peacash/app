@@ -1,1 +1,0 @@
-import{_ as s}from"./Address.7e363dbd.js";import{_ as r}from"./index.972bc94e.js";import{o,e as d}from"./vendor.c2e542a0.js";const t={mounted(){document.title=this.$route.params.address+" - Address - Explorer - Pea"}};function a(n,_,c,p,m,i){const e=s;return o(),d(e,{addres:this.$route.params.address},null,8,["addres"])}var $=r(t,[["render",a]]);export{$ as default};
