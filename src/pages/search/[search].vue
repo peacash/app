@@ -49,6 +49,10 @@ export default {
 				this.$router.replace('/peers')
 				return
 			}
+			if (["r", "ra", "ran", "rand", "rando", "random"].includes(search)) {
+				this.$router.replace('/random')
+				return
+			}
 			if (search === parseInt(search).toString() && parseInt(search) !== NaN) {
 				fetch(url + "/hash/" + search).then(res => res.json()).then(data => {
 					this.$router.replace('/block/' + data)
