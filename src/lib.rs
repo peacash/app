@@ -38,8 +38,8 @@ pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> Stri
         Err(err) => return err.to_string(),
     };
     let transaction_a = pea_transaction::TransactionA::sign(output_address, amount, fee, timestamp(), &key).unwrap();
-    match bincode::serialize(&transaction_a.b()) {
-        Ok(x) => hex::encode(&x),
+    match serde_json::to_string(&transaction_a.b()) {
+        Ok(x) => x,
         Err(err) => err.to_string(),
     }
 }
@@ -54,8 +54,8 @@ pub fn stake(deposit: bool, fee: &str, secret: &str) -> String {
         Err(err) => return err.to_string(),
     };
     let stake_a = pea_stake::StakeA::sign(deposit, fee, timestamp(), &key).unwrap();
-    match bincode::serialize(&stake_a.b()) {
-        Ok(x) => hex::encode(&x),
+    match serde_json::to_string(&stake_a.b()) {
+        Ok(x) => x,
         Err(err) => err.to_string(),
     }
 }
