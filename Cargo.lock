@@ -547,7 +547,6 @@ dependencies = [
  "chrono",
  "getrandom",
  "pea-address",
- "pea-core",
  "pea-int",
  "pea-key",
  "pea-stake",
