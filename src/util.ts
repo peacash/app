@@ -11,7 +11,7 @@ export default {
     transaction: (address: string, amount: string, fee: string, secret: string) => {
         return transaction(address, amount, fee, secret)
     },
-    stake: (deposit: boolean, amount: string, fee: string, secret: string) => {
-        return stake(deposit, amount, fee, secret)
+    stake: (deposit: boolean, fee: string, secret: string) => {
+        return stake(deposit, fee, secret)
     }
 }

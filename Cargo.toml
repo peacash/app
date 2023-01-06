@@ -16,12 +16,13 @@ hex = "0.4.3"
 chrono = "0.4.23"
 getrandom = { version = "0.2.8", features = ["js"] }
 bincode = "1.3.3"
-pea-int = "0.2.1"
-pea-key = "0.3.0"
-pea-core = "0.4.0"
-pea-address = "0.4.0"
-pea-transaction = "0.5.0"
-pea-stake = "0.4.1"
+pea-int = "0.3.0"
+pea-key = "0.5.0"
+pea-core = "0.5.0"
+pea-address = "0.5.0"
+pea-transaction = "0.7.0"
+pea-stake = "0.6.0"
+sha2 = "0.10.6"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires

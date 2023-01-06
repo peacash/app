@@ -1,5 +1,6 @@
 mod utils;
-
+use pea_core::constants::DECIMAL_PLACES;
+use sha2::{Digest, Sha256};
 use wasm_bindgen::prelude::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
@@ -15,75 +16,63 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn secret(input: &[u8]) -> String {
-    let hash = pea_core::util::hash(input);
-    let key = pea_key::Key::from_secret_key_bytes(&hash);
-    pea_address::secret::encode(&key.secret_key())
+    let mut hasher = Sha256::new();
+    hasher.update(input);
+    let hash = hasher.finalize();
+    let key = pea_key::Key::from_slice(&hash.into());
+    pea_address::secret::encode(&key.secret_key_bytes())
 }
 
 #[wasm_bindgen]
 pub fn address(secret: &str) -> String {
     let key = match pea_address::secret::decode(secret) {
-        Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
+        Ok(x) => pea_key::Key::from_slice(&x),
         Err(err) => return err.to_string(),
     };
-    pea_address::address::encode(&key.address())
+    pea_address::address::encode(&key.address_bytes())
 }
 
 #[wasm_bindgen]
 pub fn transaction(address: &str, amount: &str, fee: &str, secret: &str) -> String {
     let output_address = match pea_address::address::decode(address) {
-        Ok(a) => a,
+        Ok(x) => x,
         Err(err) => return err.to_string(),
     };
-    let amount: u128 = match pea_int::from_string(amount) {
-        Ok(a) => a,
+    let amount: u128 = match pea_int::from_str(amount, DECIMAL_PLACES) {
+        Ok(x) => x,
         Err(err) => return err.to_string(),
     };
-    let fee: u128 = match pea_int::from_string(fee) {
-        Ok(a) => a,
+    let fee: u128 = match pea_int::from_str(fee, DECIMAL_PLACES) {
+        Ok(x) => x,
         Err(err) => return err.to_string(),
     };
     let key = match pea_address::secret::decode(secret) {
-        Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
+        Ok(x) => pea_key::Key::from_slice(&x),
         Err(err) => return err.to_string(),
     };
     let timestamp = pea_core::util::timestamp();
-    let mut transaction =
-        pea_transaction::Transaction::new(output_address, amount, fee, timestamp);
-    transaction.sign(&key);
-    match transaction.validate() {
-        Ok(()) => {}
-        Err(err) => return err.to_string(),
-    }
-    match bincode::serialize(&transaction) {
-        Ok(a) => hex::encode(&a),
+    let transaction_a =
+        pea_transaction::TransactionA::sign(output_address, amount, fee, timestamp, &key).unwrap();
+    match bincode::serialize(&transaction_a.b()) {
+        Ok(x) => hex::encode(&x),
         Err(err) => err.to_string(),
     }
 }
 
 #[wasm_bindgen]
-pub fn stake(deposit: bool, amount: &str, fee: &str, secret: &str) -> String {
-    let amount: u128 = match pea_int::from_string(amount) {
-        Ok(a) => a,
-        Err(err) => return err.to_string(),
-    };
-    let fee: u128 = match pea_int::from_string(fee) {
-        Ok(a) => a,
+pub fn stake(deposit: bool, fee: &str, secret: &str) -> String {
+    let fee: u128 = match pea_int::from_str(fee, DECIMAL_PLACES) {
+        Ok(x) => x,
         Err(err) => return err.to_string(),
     };
     let key = match pea_address::secret::decode(secret) {
-        Ok(a) => pea_key::Key::from_secret_key_bytes(&a),
+        Ok(x) => pea_key::Key::from_slice(&x),
         Err(err) => return err.to_string(),
     };
     let timestamp = pea_core::util::timestamp();
-    let mut stake = pea_stake::Stake::new(deposit, amount, fee, timestamp);
-    stake.sign(&key);
-    match stake.validate() {
-        Ok(()) => {}
-        Err(err) => return err.to_string(),
-    }
-    match bincode::serialize(&stake) {
-        Ok(a) => hex::encode(&a),
+    let stake_a = pea_stake::StakeA::sign(deposit, fee, timestamp, &key).unwrap();
+    match bincode::serialize(&stake_a.b()) {
+        Ok(x) => hex::encode(&x),
         Err(err) => err.to_string(),
     }
 }

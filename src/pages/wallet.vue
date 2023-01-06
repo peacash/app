@@ -68,12 +68,6 @@
 		</Description>
 		<Description>
 			<form @submit="stake_send" class="flex flex-col gap-2 sm:gap-2 md:gap-10">
-				<input v-model="stake_amount" type="text" placeholder="stake amount" class="
-                    text-black
-                    rounded
-					ring-1 ring-black ring-opacity-10 sm:ring-opacity-20
-                    w-full
-                ">
 				<input v-model="stake_fee" type="text" placeholder="stake fee" class="
                     text-black
                     rounded
@@ -150,7 +144,6 @@ export default {
 			transaction_fee: this.$route.query.fee,
 			stake: "",
 			stake_deposit: true,
-			stake_amount: "",
 			stake_fee: "",
 			big_qr: false
 		}
@@ -177,7 +170,7 @@ export default {
 			this.transaction = util.transaction(this.transaction_output, this.transaction_amount, this.transaction_fee, this.secret)
 		},
 		stake_sign() {
-			this.stake = util.stake(this.stake_deposit, this.stake_amount, this.stake_fee, this.secret)
+			this.stake = util.stake(this.stake_deposit, this.stake_fee, this.secret)
 			this.stake_confirm = true
 		},
 		transaction_send(e) {
